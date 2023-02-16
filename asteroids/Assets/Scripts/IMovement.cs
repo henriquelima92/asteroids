@@ -1,0 +1,13 @@
+public enum MovingState
+{
+    Idle,
+    Thrusting,
+}
+
+public interface IMovement
+{
+    public MovingState MovingState { get; }
+    public float Speed { get; }
+
+    void Move();
+}
