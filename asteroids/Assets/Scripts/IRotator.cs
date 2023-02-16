@@ -10,5 +10,6 @@ public interface IRotator
     public DirectionState RotationState { get; }
     public float RotationSpeed { get; }
 
+    void SetDirectionState(DirectionState direction);
     void Rotate(DirectionState direction);
 }

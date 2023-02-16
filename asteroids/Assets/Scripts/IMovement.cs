@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public enum MovingState
 {
     Idle,
@@ -9,5 +11,7 @@ public interface IMovement
     public MovingState MovingState { get; }
     public float Speed { get; }
 
-    void Move();
+
+    void SetMovingState(MovingState state);
+    void Move(Vector3 direction);
 }

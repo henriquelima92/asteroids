@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ship : MonoBehaviour, IMovement, IRotator, ILife
+[Serializable]
+public abstract class Ship : IMovement, IRotator, ILife
 {
     [field: SerializeField] public float Speed { get; protected set; }
     [field: SerializeField] public float RotationSpeed { get; protected set; }
@@ -15,7 +17,8 @@ public abstract class Ship : MonoBehaviour, IMovement, IRotator, ILife
     public int MaxLives { get; protected set; }
 
     
-    public abstract void Move();
+ 
+    public abstract void Move(Vector3 direction);
 
     public abstract void Rotate(DirectionState direction);
 
@@ -32,5 +35,13 @@ public abstract class Ship : MonoBehaviour, IMovement, IRotator, ILife
         return Lives;
     }
 
+    public void SetMovingState(MovingState state)
+    {
+        MovingState = state;
+    }
 
+    public void SetDirectionState(DirectionState direction)
+    {
+        RotationState = direction;
+    }
 }
