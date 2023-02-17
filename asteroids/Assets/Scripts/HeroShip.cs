@@ -9,7 +9,7 @@ public class HeroShip : MonoBehaviour
 
     private void Start()
     {
-        _shotSystem.Initialize(10f, 4f);
+        _shotSystem.Initialize(10f, 0.2f);
     }
 
     private void Update()
