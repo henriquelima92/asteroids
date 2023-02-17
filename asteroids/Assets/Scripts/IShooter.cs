@@ -2,8 +2,8 @@ using UnityEngine;
 
 public interface IShooter
 {
-    public Transform ShotRoot { get; }
-    public GameObject ShotPrefab { get; }
+    public Transform Anchor { get; }
+    public ObjectPool ShotPool { get; }
     public float ShotSpeed { get; }
     public float ShotCadence { get; }
     public float CooldownTime { get; }
@@ -12,5 +12,5 @@ public interface IShooter
     public void Shot(Vector3 direction);
     public void IncrementCooldown();
 
-    public void Initialize(float shotSpeed, float shotCadence);
+    public void Initialize(float shotSpeed, float shotCadence, ObjectPool shotPool);
 }

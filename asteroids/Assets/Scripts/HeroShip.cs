@@ -5,11 +5,11 @@ using UnityEngine;
 public class HeroShip : MonoBehaviour
 {
     [SerializeField] private PlayerShip _ship;
-    [SerializeField] private PlayerShotSystem _shotSystem;
+    [SerializeField] private PlayerShotController _shotSystem;
 
-    private void Start()
+    public void InitializeShotSystem(float shotSpeed, float shotCadence, ObjectPool shotPool)
     {
-        _shotSystem.Initialize(10f, 0.2f);
+        _shotSystem.Initialize(shotSpeed, shotCadence, shotPool);
     }
 
     private void Update()

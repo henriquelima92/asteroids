@@ -1,22 +1,30 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct HyperSpaceBoundaries
+public struct MapBoundaries
 {
     public float Left;
     public float Right;
     public float Top;
     public float Bottom;
+}
 
+[Serializable]
+public class HyperSpace
+{
+    [SerializeField] private MapBoundaries _mapBoundaries;
+
+    private List<GameObject> _entities;
 #if UNITY_EDITOR
     public void DrawGizmosBoundary()
     {
-        var leftTop = new Vector2(Left, Top);
-        var rightTop = new Vector2(Right, Top);
+        var leftTop = new Vector2(_mapBoundaries.Left, _mapBoundaries.Top);
+        var rightTop = new Vector2(_mapBoundaries.Right, _mapBoundaries.Top);
 
-        var leftBottom = new Vector2(Left, Bottom);
-        var rightBottom = new Vector2(Right, Bottom);
+        var leftBottom = new Vector2(_mapBoundaries.Left, _mapBoundaries.Bottom);
+        var rightBottom = new Vector2(_mapBoundaries.Right, _mapBoundaries.Bottom);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(leftTop, rightTop);
@@ -26,50 +34,49 @@ public struct HyperSpaceBoundaries
     }
 #endif
 
-    public void SetHyperspace(Transform entity)
+    public void Initialize(List<GameObject> mapObjects)
     {
-        if(entity.position.x < Left)
-        {
-            entity.position = new Vector2(Right, entity.position.y);
-        }
-
-        if(entity.position.x > Right)
-        {
-            entity.position = new Vector2(Left, entity.position.y);
-        }
-
-        if(entity.position.y > Top)
-        {
-            entity.position = new Vector2(entity.position.x, Bottom);
-        }
-
-        if(entity.position.y < Bottom)
-        {
-            entity.position = new Vector2(entity.position.x, Top);
-        }
+        //_mapBoundaries = mapBoundaries;
+        _entities = mapObjects;
     }
 
-    public bool IsInHyperSpace(Transform entity)
+    public void UpdateHyperSpace()
     {
-        return entity.position.x < Left || entity.position.x > Right ||
-            entity.position.y > Top || entity.position.y < Bottom;
-    }
-}
+        foreach (var entity in _entities)
+        {
+            if(!entity.activeInHierarchy)
+            {
+                continue;
+            }
 
-public class HyperSpace : MonoBehaviour
-{
-    [SerializeField] private HyperSpaceBoundaries _hyperSpaceBoundaries;
-    [SerializeField] private HeroShip _ship;
+            if(EntityUtility.IsPlayerShot(entity))
+            {
+                if(HyperSpaceUtility.IsInHyperSpace(entity.transform.position, _mapBoundaries))
+                {
+                    entity.SetActive(false);
+                    continue;
+                }
+            }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        _hyperSpaceBoundaries.DrawGizmosBoundary();
-    }
-#endif
+            if (entity.transform.position.x < _mapBoundaries.Left)
+            {
+                entity.transform.position = new Vector2(_mapBoundaries.Right, entity.transform.position.y);
+            }
 
-    private void Update()
-    {
-        _hyperSpaceBoundaries.SetHyperspace(_ship.transform);
+            if (entity.transform.position.x > _mapBoundaries.Right)
+            {
+                entity.transform.position = new Vector2(_mapBoundaries.Left, entity.transform.position.y);
+            }
+
+            if (entity.transform.position.y > _mapBoundaries.Top)
+            {
+                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundaries.Bottom);
+            }
+
+            if (entity.transform.position.y < _mapBoundaries.Bottom)
+            {
+                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundaries.Top);
+            }
+        }
     }
 }

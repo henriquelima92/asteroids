@@ -264,8 +264,7 @@ MonoBehaviour:
     <RotationSpeed>k__BackingField: 10
     _rigidbody: {fileID: 810878578}
   _shotSystem:
-    <ShotRoot>k__BackingField: {fileID: 810878581}
-    <ShotPrefab>k__BackingField: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
+    <Anchor>k__BackingField: {fileID: 810878581}
 --- !u!212 &810878580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -331,9 +330,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1724691887
+--- !u!1 &1108573431
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,45 +340,82 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1724691889}
-  - component: {fileID: 1724691888}
+  - component: {fileID: 1108573432}
   m_Layer: 0
-  m_Name: MapBoundaries
+  m_Name: PlayerShots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1724691888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724691887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 442e5a5270ca26d46af1450727aaab0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hyperSpaceBoundaries:
-    Left: -8
-    Right: 8
-    Top: 5
-    Bottom: -5
-  _ship: {fileID: 810878579}
---- !u!4 &1724691889
+--- !u!4 &1108573432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724691887}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1108573431}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1933663875}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1933663873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933663875}
+  - component: {fileID: 1933663874}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1933663874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933663873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac1b0fa3531fd240942e32f229127ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hyperSpace:
+    _mapBoundaries:
+      Left: -8
+      Right: 8
+      Top: 5
+      Bottom: -5
+  _heroShip: {fileID: 810878579}
+  _playerShotsPool:
+    _objectToPool: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
+    _maxAmount: 20
+    _root: {fileID: 1108573432}
+--- !u!4 &1933663875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933663873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1108573432}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
