@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeroShip : MonoBehaviour
 {
     [SerializeField] private PlayerShip _ship;
-    [SerializeField] private ShotSystem _shotSystem;
+    [SerializeField] private PlayerShotSystem _shotSystem;
 
     private void Start()
     {
