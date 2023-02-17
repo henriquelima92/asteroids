@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class PlayerShotController : ShotControllerBase
+public class PlayerShooter : ShotControllerBase
 {
     public override void Shot(Vector3 direction)
     {
