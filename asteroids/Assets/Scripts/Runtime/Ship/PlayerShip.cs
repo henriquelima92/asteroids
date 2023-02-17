@@ -7,6 +7,7 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private PlayerMover _movement;
     [SerializeField] private PlayerRotator _rotation;
     [SerializeField] private PlayerShooter _shooter;
+    [SerializeField] private Life _life;
 
     public void InitializeShotSystem(float shotSpeed, float shotCadence, ObjectPool shotPool)
     {

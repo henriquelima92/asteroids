@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 810878579}
   - component: {fileID: 810878578}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: PlayerShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,12 +259,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84750e7ec7a48ed4882d68b19cfac70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship:
-    <Speed>k__BackingField: 10
-    <RotationSpeed>k__BackingField: 10
+  _movement:
     _rigidbody: {fileID: 810878578}
-  _shotSystem:
+    <Speed>k__BackingField: 10
+  _rotation:
+    _rigidbody: {fileID: 810878578}
+    <RotationSpeed>k__BackingField: 10
+  _shooter:
     <Anchor>k__BackingField: {fileID: 810878581}
+  _life:
+    <Lives>k__BackingField: 5
+    <MaxLives>k__BackingField: 10
 --- !u!212 &810878580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -398,7 +403,7 @@ MonoBehaviour:
       Right: 8
       Top: 5
       Bottom: -5
-  _heroShip: {fileID: 810878579}
+  _playerShip: {fileID: 810878579}
   _playerShotsPool:
     _objectToPool: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
     _maxAmount: 20
