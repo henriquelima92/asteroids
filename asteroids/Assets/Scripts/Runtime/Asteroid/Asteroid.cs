@@ -12,9 +12,18 @@ public class Asteroid : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer(EntityUtility.PlayerShot))
+        var collisionObject = collision.gameObject;
+        var collisionLayer = collisionObject.layer;
+        
+
+        if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShot))
         {
-            collision.gameObject.SetActive(false);
+            collisionObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+        else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShip))
+        {
+            collisionObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }

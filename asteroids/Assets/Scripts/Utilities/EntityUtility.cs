@@ -3,6 +3,7 @@
 public static class EntityUtility
 {
     public static string PlayerShot = "PlayerShot";
+    public static string PlayerShip = "PlayerShip";
 
     public static bool IsPlayerShot(GameObject entity)
     {
