@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerShip _playerShip;
     [SerializeField] private ObjectPool _playerShotsPool;
 
+    [SerializeField] private List<ObjectPool> _asteroidsPool;
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -25,6 +27,12 @@ public class GameController : MonoBehaviour
 
         _playerShip.InitializeShotSystem(10f, 0.1f, _playerShotsPool);
         entities.Add(_playerShip.gameObject);
+
+        foreach (var asteroidPool in _asteroidsPool)
+        {
+            var pool = asteroidPool.Initialize();
+            entities.AddRange(pool);
+        }
 
         _hyperSpace.Initialize(entities);
     }

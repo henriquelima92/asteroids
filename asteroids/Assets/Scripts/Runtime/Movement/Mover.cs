@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class PlayerMover : IMovement
+public class Mover : IMovement
 {
     [SerializeField] private Rigidbody2D _rigidbody;
 
