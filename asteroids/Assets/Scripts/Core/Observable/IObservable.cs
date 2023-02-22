@@ -1,10 +1,10 @@
 using System;
 using UnityEngine.Events;
 
-public interface IObservable
+public interface IObservable<T>
 {
-    public UnityAction Actions { get; }
+    public UnityAction<T> Actions { get; }
 
-    void AddListener(UnityAction action);
-    void Invoke();
+    void AddListener(UnityAction<T> action);
+    void Invoke(T obj);
 }

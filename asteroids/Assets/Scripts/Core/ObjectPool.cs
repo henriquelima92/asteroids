@@ -28,14 +28,24 @@ public class ObjectPool
 
     public T GetObjectFromPool<T>()
     {
+        T pooledObject = default;
+
         for (int i = 0; i < _pooledObjects.Count; i++)
         {
             if(_pooledObjects[i].activeInHierarchy == false)
             {
-                return _pooledObjects[i].GetComponent<T>();
+                pooledObject = _pooledObjects[i].GetComponent<T>();
             }
         }
 
-        return default;
+        if (pooledObject == null)
+        {
+            var obj = Object.Instantiate(_objectToPool, _root);
+            _pooledObjects.Add(obj);
+
+            pooledObject = obj.GetComponent<T>();
+        }
+
+        return pooledObject;
     }
 }

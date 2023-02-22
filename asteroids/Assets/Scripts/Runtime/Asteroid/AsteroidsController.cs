@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum AsteroidType
 {
@@ -36,30 +37,42 @@ public class AsteroidsController
         for (int i = 0; i < range.GetRandomRange(); i++)
         {
             var asteroid = pool.GetObjectFromPool<Asteroid>();
-            InitializeAsteroid(asteroid, Vector2.zero, 10f);
+            InitializeAsteroid(asteroid, OnBigAsteroidDestroyed);
         }
     }
 
-    private void OnBigAsteroidDestroyed()
+    private void OnBigAsteroidDestroyed(Transform obj)
+    {
+        var mediumAsteroidsPool = _pools[1];
+
+        for (int i = 0; i < _currentHorde.Horde.MediumAsteroidsRange.GetRandomRange(); i++)
+        {
+           var asteroid = mediumAsteroidsPool.GetObjectFromPool<Asteroid>();
+            InitializeAsteroid(asteroid, OnMediumAsteroidDestroyed);
+        }
+    }
+
+    private void OnMediumAsteroidDestroyed(Transform obj)
+    {
+        var smallAsteroidsPool = _pools[2];
+
+        for (int i = 0; i < _currentHorde.Horde.SmallAsteroidsRange.GetRandomRange(); i++)
+        {
+            var asteroid = smallAsteroidsPool.GetObjectFromPool<Asteroid>();
+            InitializeAsteroid(asteroid, OnSmallAsteroidDestroyed);
+        }
+    }
+
+    private void OnSmallAsteroidDestroyed(Transform obj)
     {
 
     }
 
-    private void OnMediumAsteroidDestroyed()
-    {
-
-    }
-
-    private void OnSmallAsteroidDestroyed()
-    {
-
-    }
-
-    private void InitializeAsteroid(Asteroid asteroid, Vector2 startPosition, float randomPositionRadius)
+    private void InitializeAsteroid(Asteroid asteroid, UnityAction<Transform> onDestroy)
     {
         var position = RandomUtility.RandomPointInBox(_mapBoundariesData.MapBoundaries);
         var direction = RandomUtility.GetRandomDirection();
 
-        asteroid.Initialize(position, direction, OnBigAsteroidDestroyed);
+        asteroid.Initialize(position, direction, onDestroy);
     }
 }

@@ -6,7 +6,7 @@ public class Asteroid : MonoBehaviour
 {
     [SerializeField] private Mover _movement;
 
-    private Observable _observable = new Observable();
+    private OnDestroyObservable<Transform> _observable = new OnDestroyObservable<Transform>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,24 +19,23 @@ public class Asteroid : MonoBehaviour
             collisionObject.SetActive(false);
             gameObject.SetActive(false);
             
-            _observable.Invoke();
+            _observable.Invoke(transform);
         }
         else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShip))
         {
             collisionObject.SetActive(false);
             gameObject.SetActive(false);
 
-            _observable.Invoke();
+            _observable.Invoke(transform);
         }
     }
 
-    public void Initialize(Vector2 position, Vector2 direction, UnityAction onDestroy)
+    public void Initialize(Vector2 position, Vector2 direction, UnityAction<Transform> onDestroy)
     {
         transform.position = position;
-        _observable.AddListener(onDestroy);
-
         gameObject.SetActive(true);
 
+        _observable.AddListener(onDestroy);
         _movement.SetMovingState(MovingState.Thrusting);
         _movement.Move(direction);
     }

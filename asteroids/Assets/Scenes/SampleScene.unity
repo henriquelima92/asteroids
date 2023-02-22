@@ -390,7 +390,7 @@ MonoBehaviour:
       _maxAmount: 20
       _root: {fileID: 697236904}
     - _objectToPool: {fileID: 6149600969153779763, guid: b38024649674093478803392d8b25136, type: 3}
-      _maxAmount: 20
+      _maxAmount: 50
       _root: {fileID: 1836665447}
 --- !u!4 &1933663875
 Transform:
