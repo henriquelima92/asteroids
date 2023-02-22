@@ -372,26 +372,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hyperSpace:
-    _mapBoundaries:
-      Left: -8
-      Right: 8
-      Top: 5
-      Bottom: -5
+    _mapBoundariesData: {fileID: 11400000, guid: 66362d59981b49a4c9de5b1da383f487, type: 2}
+    _drawGizmos: 0
   _playerShip: {fileID: 810878579}
   _playerShotsPool:
     _objectToPool: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
     _maxAmount: 20
     _root: {fileID: 1108573432}
-  _asteroidsPool:
-  - _objectToPool: {fileID: 4248402290146632366, guid: d7cfac8306f78874bbd000f6b2a1b37b, type: 3}
-    _maxAmount: 20
-    _root: {fileID: 571264399}
-  - _objectToPool: {fileID: 6213943355817866877, guid: c53a800147a4cd84dbbc338a487cf07a, type: 3}
-    _maxAmount: 20
-    _root: {fileID: 697236904}
-  - _objectToPool: {fileID: 6149600969153779763, guid: b38024649674093478803392d8b25136, type: 3}
-    _maxAmount: 20
-    _root: {fileID: 1836665447}
+  _asteroidsController:
+    _mapBoundariesData: {fileID: 11400000, guid: 66362d59981b49a4c9de5b1da383f487, type: 2}
+    _currentHorde: {fileID: 11400000, guid: 590263d35f525ab4bbf5b1578ecb142e, type: 2}
+    _pools:
+    - _objectToPool: {fileID: 4248402290146632366, guid: d7cfac8306f78874bbd000f6b2a1b37b, type: 3}
+      _maxAmount: 20
+      _root: {fileID: 571264399}
+    - _objectToPool: {fileID: 6213943355817866877, guid: c53a800147a4cd84dbbc338a487cf07a, type: 3}
+      _maxAmount: 20
+      _root: {fileID: 697236904}
+    - _objectToPool: {fileID: 6149600969153779763, guid: b38024649674093478803392d8b25136, type: 3}
+      _maxAmount: 20
+      _root: {fileID: 1836665447}
 --- !u!4 &1933663875
 Transform:
   m_ObjectHideFlags: 0

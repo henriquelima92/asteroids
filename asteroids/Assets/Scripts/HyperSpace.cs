@@ -3,40 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct MapBoundaries
-{
-    public float Left;
-    public float Right;
-    public float Top;
-    public float Bottom;
-}
-
-[Serializable]
 public class HyperSpace
 {
-    [SerializeField] private MapBoundaries _mapBoundaries;
+    [SerializeField] private MapBoundariesData _mapBoundariesData;
 
     private List<GameObject> _entities;
 #if UNITY_EDITOR
+    [SerializeField] private bool _drawGizmos;
+
     public void DrawGizmosBoundary()
     {
-        var leftTop = new Vector2(_mapBoundaries.Left, _mapBoundaries.Top);
-        var rightTop = new Vector2(_mapBoundaries.Right, _mapBoundaries.Top);
-
-        var leftBottom = new Vector2(_mapBoundaries.Left, _mapBoundaries.Bottom);
-        var rightBottom = new Vector2(_mapBoundaries.Right, _mapBoundaries.Bottom);
+        if(!_mapBoundariesData || !_drawGizmos)
+        {
+            return;
+        }
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(leftTop, rightTop);
-        Gizmos.DrawLine(rightTop, rightBottom);
-        Gizmos.DrawLine(rightBottom, leftBottom);
-        Gizmos.DrawLine(leftBottom, leftTop);
+        Gizmos.DrawCube(_mapBoundariesData.MapBoundaries.Center, _mapBoundariesData.MapBoundaries.Size);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(_mapBoundariesData.MapBoundaries.SafeAreaCenter, _mapBoundariesData.MapBoundaries.SafeAreaSize);
     }
 #endif
 
     public void Initialize(List<GameObject> mapObjects)
     {
-        //_mapBoundaries = mapBoundaries;
         _entities = mapObjects;
     }
 
@@ -51,31 +42,31 @@ public class HyperSpace
 
             if(EntityUtility.IsPlayerShot(entity))
             {
-                if(HyperSpaceUtility.IsInHyperSpace(entity.transform.position, _mapBoundaries))
+                if(HyperSpaceUtility.IsInHyperSpace(entity.transform.position, _mapBoundariesData.MapBoundaries))
                 {
                     entity.SetActive(false);
                     continue;
                 }
             }
 
-            if (entity.transform.position.x < _mapBoundaries.Left)
+            if (entity.transform.position.x < _mapBoundariesData.MapBoundaries.Left)
             {
-                entity.transform.position = new Vector2(_mapBoundaries.Right, entity.transform.position.y);
+                entity.transform.position = new Vector2(_mapBoundariesData.MapBoundaries.Right, entity.transform.position.y);
             }
 
-            if (entity.transform.position.x > _mapBoundaries.Right)
+            if (entity.transform.position.x > _mapBoundariesData.MapBoundaries.Right)
             {
-                entity.transform.position = new Vector2(_mapBoundaries.Left, entity.transform.position.y);
+                entity.transform.position = new Vector2(_mapBoundariesData.MapBoundaries.Left, entity.transform.position.y);
             }
 
-            if (entity.transform.position.y > _mapBoundaries.Top)
+            if (entity.transform.position.y > _mapBoundariesData.MapBoundaries.Top)
             {
-                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundaries.Bottom);
+                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundariesData.MapBoundaries.Bottom);
             }
 
-            if (entity.transform.position.y < _mapBoundaries.Bottom)
+            if (entity.transform.position.y < _mapBoundariesData.MapBoundaries.Bottom)
             {
-                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundaries.Top);
+                entity.transform.position = new Vector2(entity.transform.position.x, _mapBoundariesData.MapBoundaries.Top);
             }
         }
     }
