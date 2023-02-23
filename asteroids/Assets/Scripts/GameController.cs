@@ -1,15 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private GameData _gameData;
     [SerializeField] private HyperSpace _hyperSpace;
+    [SerializeField] private PlayersController _playersController;
+    [SerializeField] private EnemiesController _enemiesController;
 
-    [SerializeField] private PlayerShip _playerShip;
-    [SerializeField] private ObjectPool _playerShotsPool;
-
-    [SerializeField] private AsteroidsController _asteroidsController;
+    private List<GameObject> _entities = new List<GameObject>();
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -20,18 +19,15 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        var entities = new List<GameObject>();
+        _playersController = new PlayersController();
+        var player = _playersController.Initialize(_gameData.PlayerData);
+        _entities.AddRange(player);
 
-        var shots = _playerShotsPool.Initialize();
-        entities.AddRange(shots);
+        _enemiesController = new EnemiesController();
+        var asteroids = _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData);
+        _entities.AddRange(asteroids);
 
-        _playerShip.InitializeShotSystem(10f, 0.1f, _playerShotsPool);
-        entities.Add(_playerShip.gameObject);
-
-        var asteroids = _asteroidsController.Initialize();
-        entities.AddRange(asteroids);
-
-        _hyperSpace.Initialize(entities);
+        _hyperSpace.Initialize(_gameData.MapBoundariesData, _entities);
     }
 
     private void Update()

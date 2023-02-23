@@ -6,13 +6,26 @@ public class ObjectPool
 {
     [SerializeField] private GameObject _objectToPool;
     [SerializeField] private int _maxAmount;
-    [SerializeField] private Transform _root;
+    [SerializeField] private string _rootName;
 
+    private Transform _root;
+    private Transform _parentRoot;
     private List<GameObject> _pooledObjects;
+
+    public ObjectPool(GameObject objectToPool, int maxAmount, string rootName, Transform parentRoot = null)
+    {
+        _objectToPool = objectToPool;
+        _maxAmount = maxAmount;
+        _rootName = rootName;
+        _parentRoot = parentRoot;
+    }
 
     public List<GameObject> Initialize()
     {
         _pooledObjects = new List<GameObject>();
+        _root = new GameObject(_rootName).transform;
+        _root.SetParent(_parentRoot);
+
         GameObject tempObject;
 
         for (int i = 0; i < _maxAmount; i++)
@@ -25,7 +38,6 @@ public class ObjectPool
 
         return _pooledObjects;
     }
-
     public T GetObjectFromPool<T>()
     {
         T pooledObject = default;

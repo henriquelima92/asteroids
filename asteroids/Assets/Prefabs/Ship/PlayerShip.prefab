@@ -98,17 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84750e7ec7a48ed4882d68b19cfac70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement:
-    _rigidbody: {fileID: 5521339630528194039}
-    <Speed>k__BackingField: 10
-  _rotation:
-    _rigidbody: {fileID: 5521339630528194039}
-    <RotationSpeed>k__BackingField: 10
-  _shooter:
-    <Anchor>k__BackingField: {fileID: 5521339630528194032}
-  _life:
-    <Lives>k__BackingField: 5
-    <MaxLives>k__BackingField: 10
+  _rigidbody2D: {fileID: 5521339630528194039}
 --- !u!50 &5521339630528194039
 Rigidbody2D:
   serializedVersion: 4

@@ -4,6 +4,11 @@ using UnityEngine;
 [Serializable]
 public class PlayerShooter : ShotControllerBase
 {
+    public PlayerShooter(Transform anchor, float shotSpeed, float shotCadence, ObjectPool shotPool) : base(anchor, shotSpeed, shotCadence, shotPool)
+    {
+
+    }
+
     public override void Shot(Vector3 direction)
     {
         if (ShotCadence > CooldownTime)

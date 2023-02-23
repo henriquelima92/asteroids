@@ -5,9 +5,9 @@ using UnityEngine;
 [Serializable]
 public class HyperSpace
 {
-    [SerializeField] private MapBoundariesData _mapBoundariesData;
-
+    private MapBoundariesData _mapBoundariesData;
     private List<GameObject> _entities;
+
 #if UNITY_EDITOR
     [SerializeField] private bool _drawGizmos;
 
@@ -26,13 +26,21 @@ public class HyperSpace
     }
 #endif
 
-    public void Initialize(List<GameObject> mapObjects)
+    public void Initialize(MapBoundariesData mapBoundariesData, List<GameObject> mapObjects)
     {
+        _entities = new List<GameObject>();
+
+        _mapBoundariesData = mapBoundariesData;
         _entities = mapObjects;
     }
 
     public void UpdateHyperSpace()
     {
+        if(_entities == null)
+        {
+            return;
+        }
+
         foreach (var entity in _entities)
         {
             if(!entity.activeInHierarchy)

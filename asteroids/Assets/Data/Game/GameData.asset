@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcedc3f91ba8484bba80da3b79f7603, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  _mapBoundariesData: {fileID: 11400000, guid: 66362d59981b49a4c9de5b1da383f487, type: 2}
+  _playerData: {fileID: 11400000, guid: af318a96c44bae5438667539fe7292c5, type: 2}
+  _wavesData: {fileID: 11400000, guid: 590263d35f525ab4bbf5b1578ecb142e, type: 2}
+  _enemiesData: {fileID: 11400000, guid: 156971982a500294cabd56e5f841c9fe, type: 2}

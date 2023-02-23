@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField] private Mover _movement;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
+    public Rigidbody2D Rigidbody2D => _rigidbody2D;
+
+    private IMovement _movement;
 
     private OnDestroyObservable<Transform> _observable = new OnDestroyObservable<Transform>();
 
@@ -30,13 +32,12 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector2 position, Vector2 direction, UnityAction<Transform> onDestroy)
+    public void Initialize(IMovement movement, Vector3 position, UnityAction<Transform> onDestroy)
     {
+        _movement = movement;
+        _observable.AddListener(onDestroy);
+
         transform.position = position;
         gameObject.SetActive(true);
-
-        _observable.AddListener(onDestroy);
-        _movement.SetMovingState(MovingState.Thrusting);
-        _movement.Move(direction);
     }
 }

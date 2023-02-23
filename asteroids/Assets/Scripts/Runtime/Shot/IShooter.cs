@@ -11,6 +11,4 @@ public interface IShooter
 
     public void Shot(Vector3 direction);
     public void IncrementCooldown();
-
-    public void Initialize(float shotSpeed, float shotCadence, ObjectPool shotPool);
 }

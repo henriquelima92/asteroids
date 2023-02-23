@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d557b65fb6e07e247a41e6f579b58208, type: 3}
+  m_Name: SinglePlayer
+  m_EditorClassIdentifier: 
+  _players:
+  - PlayerName: Player0
+    PlayerPrefab: {fileID: 5521339630528194038, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
+    ShotPrefab: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
+    Inputs:
+      Thrust: 273
+      RotateLeft: 276
+      RotateRight: 275
+      Shot: 32
+    MoveSpeed: 10
+    RotateSpeed: 10
+    ShotCadence: 0.1
+    ShotSpeed: 10
+    StartPosition: {x: 0, y: 0}

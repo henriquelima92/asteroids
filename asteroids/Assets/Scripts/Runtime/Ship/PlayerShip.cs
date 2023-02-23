@@ -1,27 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 {
-    [SerializeField] private Mover _movement;
-    [SerializeField] private PlayerRotator _rotation;
-    [SerializeField] private PlayerShooter _shooter;
-    [SerializeField] private Life _life;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
+    public Rigidbody2D Rigidbody2D => _rigidbody2D;
+    
+    private IMovement _movement;
+    private IRotator _rotation;
+    private IShooter _shooter;
+    private ILife _life;
+    private PlayerInputs _inputs;
 
-    public void InitializeShotSystem(float shotSpeed, float shotCadence, ObjectPool shotPool)
+
+    public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, ILife life, PlayerInputs inputs)
     {
-        _shooter.Initialize(shotSpeed, shotCadence, shotPool);
+        _movement = movement;
+        _rotation = rotator;
+        _shooter = shooter;
+        _life = life;
+        _inputs = inputs;
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(_inputs.RotateLeft))
         {
             _rotation.SetDirectionState(DirectionState.Left);
         }
 
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(_inputs.RotateRight))
         {
             _rotation.SetDirectionState(DirectionState.Right);
         }
@@ -30,7 +37,7 @@ public class PlayerShip : MonoBehaviour
             _rotation.SetDirectionState(DirectionState.None);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(_inputs.Thrust))
         {
             _movement.SetMovingState(MovingState.Thrusting);
         }
@@ -39,7 +46,7 @@ public class PlayerShip : MonoBehaviour
             _movement.SetMovingState(MovingState.Idle);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(_inputs.Shot))
         {
             _shooter.Shot(transform.up);
         }

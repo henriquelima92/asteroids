@@ -17,8 +17,9 @@ public abstract class ShotControllerBase : IShooter
         CooldownTime += Time.deltaTime;
     }
 
-    public void Initialize(float shotSpeed, float shotCadence, ObjectPool shotPool)
+    public ShotControllerBase(Transform anchor, float shotSpeed, float shotCadence, ObjectPool shotPool)
     {
+        Anchor = anchor;
         ShotCadence = shotCadence;
         CooldownTime = shotCadence;
         ShotSpeed = shotSpeed;

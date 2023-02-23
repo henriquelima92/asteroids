@@ -19,9 +19,14 @@ public class PlayerRotator : IRotator
 
         _rigidbody.AddTorque((int)RotationState * RotationSpeed);
     }
-
     public void SetDirectionState(DirectionState direction)
     {
         RotationState = direction;
+    }
+
+    public PlayerRotator(Rigidbody2D rigidbody2D, float rotationSpeed)
+    {
+        _rigidbody = rigidbody2D;
+        RotationSpeed = rotationSpeed;
     }
 }

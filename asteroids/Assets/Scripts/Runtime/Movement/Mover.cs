@@ -18,9 +18,14 @@ public class Mover : IMovement
 
         _rigidbody.AddForce(direction * Speed);
     }
-
     public void SetMovingState(MovingState state)
     {
         MovingState = state;
+    }
+
+    public Mover(Rigidbody2D rigidbody, float speed)
+    {
+        _rigidbody = rigidbody;
+        Speed = speed;
     }
 }
