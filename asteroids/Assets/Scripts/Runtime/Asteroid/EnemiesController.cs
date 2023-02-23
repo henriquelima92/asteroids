@@ -10,11 +10,16 @@ public class EnemiesController
 
     private Dictionary<EnemyType, ObjectPool> _pools;
 
+    private int _wave;
+    private int _enemiesCount;
+
     public List<GameObject> Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData)
     {
         _mapBoundaries = mapBoundariesData.MapBoundaries;
         _waves = wavesData.Waves;
         _enemies = enemiesData;
+
+        _wave = 0;
 
         var enemies = new List<GameObject>();
         _pools = new Dictionary<EnemyType, ObjectPool>();
@@ -28,7 +33,7 @@ public class EnemiesController
             enemies.AddRange(enemyObjects);
         }
 
-        SetWave(_pools[EnemyType.BigAsteroid], _waves[0].FindEnemyRandomRange(EnemyType.BigAsteroid));
+        SetWave(_pools[EnemyType.BigAsteroid], _waves[_wave].FindEnemyRandomRange(EnemyType.BigAsteroid));
 
         return enemies;
     }
@@ -44,17 +49,21 @@ public class EnemiesController
 
     private void OnBigAsteroidDestroyed(Transform obj)
     {
+        _enemiesCount -= 1;
+
         var mediumAsteroidsPool = _pools[EnemyType.MediumAsteroid];
 
         for (int i = 0; i < _waves[0].FindEnemyRandomRange(EnemyType.MediumAsteroid); i++)
         {
            var asteroid = mediumAsteroidsPool.GetObjectFromPool<Asteroid>();
-            InitializeAsteroid(asteroid, _enemies.FindEnemy(EnemyType.MediumAsteroid).MoveSpeed, OnMediumAsteroidDestroyed);
+           InitializeAsteroid(asteroid, _enemies.FindEnemy(EnemyType.MediumAsteroid).MoveSpeed, OnMediumAsteroidDestroyed);
         }
     }
 
     private void OnMediumAsteroidDestroyed(Transform obj)
     {
+        _enemiesCount -= 1;
+
         var smallAsteroidsPool = _pools[EnemyType.SmallAsteroid];
 
         for (int i = 0; i < _waves[0].FindEnemyRandomRange(EnemyType.SmallAsteroid); i++)
@@ -66,11 +75,19 @@ public class EnemiesController
 
     private void OnSmallAsteroidDestroyed(Transform obj)
     {
+        _enemiesCount -= 1;
 
+        if(_enemiesCount <= 0)
+        {
+            _wave = Mathf.Clamp(_wave + 1, 0, _waves.Count - 1);
+            SetWave(_pools[EnemyType.BigAsteroid], _waves[_wave].FindEnemyRandomRange(EnemyType.BigAsteroid));
+        }
     }
 
     private void InitializeAsteroid(Asteroid asteroid, float moveSpeed, UnityAction<Transform> onDestroy)
     {
+        _enemiesCount += 1;
+
         var position = RandomUtility.RandomPointInBox(_mapBoundaries);
         var direction = RandomUtility.GetRandomDirection();
 

@@ -15,13 +15,13 @@ MonoBehaviour:
   _enemies:
   - EnemyType: 0
     EnemyPrefab: {fileID: 4248402290146632366, guid: d7cfac8306f78874bbd000f6b2a1b37b, type: 3}
-    MaxAmount: 20
+    MaxAmount: 50
     MoveSpeed: 0.05
   - EnemyType: 1
     EnemyPrefab: {fileID: 6213943355817866877, guid: c53a800147a4cd84dbbc338a487cf07a, type: 3}
-    MaxAmount: 20
+    MaxAmount: 50
     MoveSpeed: 0.07
   - EnemyType: 2
     EnemyPrefab: {fileID: 6149600969153779763, guid: b38024649674093478803392d8b25136, type: 3}
-    MaxAmount: 20
+    MaxAmount: 50
     MoveSpeed: 0.12
