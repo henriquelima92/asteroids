@@ -32,12 +32,14 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    public void Initialize(IMovement movement, Vector3 position, UnityAction<Transform> onDestroy)
+    public void Initialize(Vector3 direction, Vector3 position, float moveSpeed, UnityAction<Transform> onDestroy)
     {
-        _movement = movement;
         _observable.AddListener(onDestroy);
-
         transform.position = position;
         gameObject.SetActive(true);
+
+        _movement = new Mover(_rigidbody2D, moveSpeed);
+        _movement.SetMovingState(MovingState.Thrusting);
+        _movement.Move(direction);
     }
 }

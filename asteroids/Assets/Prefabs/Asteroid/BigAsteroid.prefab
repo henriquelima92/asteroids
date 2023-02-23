@@ -120,12 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496cc7ef61ee5924aa44d611b190fd37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement:
-    _rigidbody: {fileID: 4248402290146632360}
-    <Speed>k__BackingField: 0.01
-  _life:
-    <Lives>k__BackingField: 1
-    <MaxLives>k__BackingField: 1
+  _rigidbody2D: {fileID: 4248402290146632360}
 --- !u!61 &-2008148900665780525
 BoxCollider2D:
   m_ObjectHideFlags: 0

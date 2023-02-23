@@ -14,10 +14,10 @@ public class GameData : ScriptableObject
     [SerializeField] private WavesData _wavesData;
 
     [Space, Header("Enemies")]
-    [SerializeField] private EnemyData _enemiesData;
+    [SerializeField] private EnemiesData _enemiesData;
 
     public MapBoundariesData MapBoundariesData => _mapBoundariesData;
     public PlayerData PlayerData => _playerData;
     public WavesData WaveData => _wavesData;
-    public EnemyData EnemiesData => _enemiesData;
+    public EnemiesData EnemiesData => _enemiesData;
 }
