@@ -21,8 +21,8 @@ MonoBehaviour:
       RotateLeft: 276
       RotateRight: 275
       Shot: 32
-    MoveSpeed: 10
-    RotateSpeed: 10
+    MoveSpeed: 7
+    RotateSpeed: 7
     ShotCadence: 0.1
     ShotSpeed: 10
     StartPosition: {x: 0, y: 0}

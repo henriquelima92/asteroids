@@ -56,7 +56,7 @@ public class EnemiesController
         for (int i = 0; i < _waves[0].FindEnemyRandomRange(EnemyType.MediumAsteroid); i++)
         {
            var asteroid = mediumAsteroidsPool.GetObjectFromPool<Asteroid>();
-           InitializeAsteroid(asteroid, _enemies.FindEnemy(EnemyType.MediumAsteroid).MoveSpeed, OnMediumAsteroidDestroyed);
+            InitializeExplodedAsteroid(asteroid, obj.position, _enemies.FindEnemy(EnemyType.MediumAsteroid).MoveSpeed, OnMediumAsteroidDestroyed);
         }
     }
 
@@ -69,7 +69,7 @@ public class EnemiesController
         for (int i = 0; i < _waves[0].FindEnemyRandomRange(EnemyType.SmallAsteroid); i++)
         {
             var asteroid = smallAsteroidsPool.GetObjectFromPool<Asteroid>();
-            InitializeAsteroid(asteroid, _enemies.FindEnemy(EnemyType.SmallAsteroid).MoveSpeed, OnSmallAsteroidDestroyed);
+            InitializeExplodedAsteroid(asteroid, obj.position, _enemies.FindEnemy(EnemyType.SmallAsteroid).MoveSpeed, OnSmallAsteroidDestroyed);
         }
     }
 
@@ -82,6 +82,16 @@ public class EnemiesController
             _wave = Mathf.Clamp(_wave + 1, 0, _waves.Count - 1);
             SetWave(_pools[EnemyType.BigAsteroid], _waves[_wave].FindEnemyRandomRange(EnemyType.BigAsteroid));
         }
+    }
+
+    private void InitializeExplodedAsteroid(Asteroid asteroid, Vector2 explosionPosition, float moveSpeed, UnityAction<Transform> onDestroy)
+    {
+        _enemiesCount += 1;
+
+        var position = RandomUtility.GetRandomPositionAroundPoint(explosionPosition, 2f);
+        var direction = RandomUtility.GetRandomDirection();
+
+        asteroid.Initialize(direction, position, moveSpeed, onDestroy);
     }
 
     private void InitializeAsteroid(Asteroid asteroid, float moveSpeed, UnityAction<Transform> onDestroy)

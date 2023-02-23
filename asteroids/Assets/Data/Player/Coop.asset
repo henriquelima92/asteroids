@@ -20,12 +20,12 @@ MonoBehaviour:
       Thrust: 273
       RotateLeft: 276
       RotateRight: 275
-      Shot: 32
+      Shot: 256
     MoveSpeed: 10
     RotateSpeed: 10
     ShotCadence: 0.1
     ShotSpeed: 10
-    StartPosition: {x: -2, y: 0}
+    StartPosition: {x: 2, y: 0}
   - PlayerName: Player1
     PlayerPrefab: {fileID: 5521339630528194038, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
     ShotPrefab: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
@@ -38,4 +38,4 @@ MonoBehaviour:
     RotateSpeed: 10
     ShotCadence: 0.1
     ShotSpeed: 10
-    StartPosition: {x: 2, y: 0}
+    StartPosition: {x: -2, y: 0}

@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: c3c0b8c38144eeb4193181ec1855e54c, type: 2}
   _hyperSpace:
-    _drawGizmos: 0
+    _drawGizmos: 1
 --- !u!4 &1933663875
 Transform:
   m_ObjectHideFlags: 0
