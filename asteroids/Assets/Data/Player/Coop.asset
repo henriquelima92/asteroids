@@ -25,6 +25,8 @@ MonoBehaviour:
     RotateSpeed: 10
     ShotCadence: 0.1
     ShotSpeed: 10
+    Lives: 3
+    MaxLives: 10
     StartPosition: {x: 2, y: 0}
   - PlayerName: Player1
     PlayerPrefab: {fileID: 5521339630528194038, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
@@ -38,4 +40,6 @@ MonoBehaviour:
     RotateSpeed: 10
     ShotCadence: 0.1
     ShotSpeed: 10
+    Lives: 3
+    MaxLives: 10
     StartPosition: {x: -2, y: 0}

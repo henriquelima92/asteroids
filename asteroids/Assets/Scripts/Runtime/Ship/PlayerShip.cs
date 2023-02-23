@@ -1,15 +1,20 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerShip : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
+
+    public ILife Life => _life;
     
     private IMovement _movement;
     private IRotator _rotation;
     private IShooter _shooter;
     private ILife _life;
     private PlayerInputs _inputs;
+
+    private UnityAction<PlayerShip> _onDestroy;
 
 
     public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, ILife life, PlayerInputs inputs)
@@ -58,5 +63,16 @@ public class PlayerShip : MonoBehaviour
     {
         _movement.Move(transform.up);
         _rotation.Rotate();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var collisionLayer = collision.gameObject.layer;
+
+        if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
+        {
+            _life.RemoveLife();
+            gameObject.SetActive(false);
+        }
     }
 }

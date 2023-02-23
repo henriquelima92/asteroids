@@ -8,6 +8,8 @@ public class Life : ILife
 
     [field: SerializeField] public int MaxLives { get; private set; }
 
+    public bool IsAlive => Lives > 0;
+
     public int AddLife()
     {
         Lives = Mathf.Clamp(Lives + 1, 0, MaxLives);
@@ -18,5 +20,11 @@ public class Life : ILife
     {
         Lives = Mathf.Clamp(Lives - 1, 0, MaxLives);
         return Lives;
+    }
+
+    public Life(int lives, int maxLives)
+    {
+        Lives = lives;
+        MaxLives = maxLives;
     }
 }

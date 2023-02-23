@@ -21,9 +21,10 @@ public class PlayersController
             IMovement movement = new Mover(ship.Rigidbody2D, player.MoveSpeed);
             IRotator rotator = new PlayerRotator(ship.Rigidbody2D, player.RotateSpeed);
             IShooter shooter = new PlayerShooter(ship.transform, player.ShotSpeed, player.ShotCadence, shotPool);
-            ILife life = new Life();
+            ILife life = new Life(player.Lives, player.MaxLives);
 
             ship.Initialize(movement, rotator, shooter, life, player.Inputs);
+
             entities.Add(ship.gameObject);
         }
 

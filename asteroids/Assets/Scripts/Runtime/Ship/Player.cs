@@ -17,5 +17,8 @@ public struct Player
     public float ShotCadence;
     public float ShotSpeed;
 
+    public int Lives;
+    public int MaxLives;
+
     public Vector2 StartPosition;
 }
