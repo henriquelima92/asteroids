@@ -43,22 +43,24 @@ public class EnemiesController
         _waves = wavesData.Waves;
         _enemies = enemiesData;
 
+        var enemies = enemiesData.Enemies;
+
         _wave = 0;
 
         _pools = new List<AsteroidPool>();
 
-        for (int i = 0; i < _enemies.Enemies.Count; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
-            var enemyData = _enemies.Enemies[i];
+            var enemyData = enemies[i];
 
             var pool = Object.Instantiate(enemyData.Pool);
-            pool.SetData(_mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType);
+            pool.SetData(_mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score);
             _pools.Add(pool);
         }
 
         for (int i = 0; i < _pools.Count; i++)
         {
-            _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1));
+            _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1), gameController.IncrementHighscore);
         }
 
         InitializeWave();

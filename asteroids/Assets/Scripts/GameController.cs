@@ -7,9 +7,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameData _gameData;
     [SerializeField] private PlayersController _playersController;
     [SerializeField] private EnemiesController _enemiesController;
+    
+    private IHighscore _highscore;
+    private IScoreBonus _scoreBonus;
 
     private void Start()
     {
+        _highscore = new Highscore();
+        _scoreBonus = new LifeScoreBonus(_gameData.HighscoreConfig.ScoreNewLifeThreshold);
+
         _playersController = new PlayersController();
         _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData, this);
 
@@ -23,15 +29,24 @@ public class GameController : MonoBehaviour
     }
     public void ResetGame()
     {
+        _highscore.Reset();
         _enemiesController.ResetEnemies();
         _playersController.ResetPlayers();
     }
-
     public void CheckGameOver()
     {
         if(!_playersController.HasAlivePlayers())
         {
             GameOver();
+        }
+    }
+    public void IncrementHighscore(int valueToAdd)
+    {
+        _highscore.IncrementHighscore(valueToAdd);
+
+        if(_scoreBonus.IsBonusAvailable(_highscore.CurrentHighscore))
+        {
+            _playersController.IncrementPlayersLife();
         }
     }
 

@@ -47,9 +47,19 @@ public class PlayersController
 
         foreach (var player in _players)
         {
-            hasPlayersAlive = player.IsAlive();
+            hasPlayersAlive = player.Life.IsAlive;
         }
 
         return hasPlayersAlive;
+    }
+
+    public void IncrementPlayersLife()
+    {
+        foreach (var player in _players)
+        {
+            player.Life.AddLife();
+        }
+
+        Debug.Log("Life added");
     }
 }

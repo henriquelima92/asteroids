@@ -16,3 +16,4 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: af318a96c44bae5438667539fe7292c5, type: 2}
   _wavesData: {fileID: 11400000, guid: 590263d35f525ab4bbf5b1578ecb142e, type: 2}
   _enemiesData: {fileID: 11400000, guid: 156971982a500294cabd56e5f841c9fe, type: 2}
+  _highscoreData: {fileID: 11400000, guid: 76cbc73792cfae34cbbb8690fa2f221f, type: 2}

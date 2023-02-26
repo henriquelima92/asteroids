@@ -18,13 +18,16 @@ MonoBehaviour:
     MoveSpeed:
       Min: 0.035
       Max: 0.05
+    Score: 100
   - EnemyType: 1
     Pool: {fileID: -3045068270849277627, guid: 667f2532197a66b40a0b1207b8b69365, type: 3}
     MoveSpeed:
       Min: 0.05
       Max: 0.07
+    Score: 200
   - EnemyType: 2
     Pool: {fileID: 5286696963593104709, guid: 87f93c4fc49f57843a714307018fee33, type: 3}
     MoveSpeed:
       Min: 0.07
       Max: 0.09
+    Score: 500

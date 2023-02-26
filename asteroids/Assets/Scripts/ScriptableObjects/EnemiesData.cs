@@ -9,6 +9,7 @@ public struct Enemy
     public EnemyType EnemyType;
     public AsteroidPool Pool;
     public FloatRange MoveSpeed;
+    public int Score;
 }
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Data/Enemy/EnemyData", order = 1)]

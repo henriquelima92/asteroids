@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class PlayerShip : Entity
 {
     public ILife Life => _life;
+
     private IMovement _movement;
     private IRotator _rotation;
     private IShooter _shooter;
@@ -42,10 +43,6 @@ public class PlayerShip : Entity
         gameObject.SetActive(true);
     }
 
-    public bool IsAlive()
-    {
-        return _life.IsAlive;
-    }
 
     protected override void Update()
     {

@@ -16,8 +16,12 @@ public class GameData : ScriptableObject
     [Space, Header("Enemies")]
     [SerializeField] private EnemiesData _enemiesData;
 
+    [Space, Header("Highscore")]
+    [SerializeField] private HighscoreData _highscoreData;
+
     public MapBoundariesData MapBoundariesData => _mapBoundariesData;
     public PlayerData PlayerData => _playerData;
     public WavesData WaveData => _wavesData;
     public EnemiesData EnemiesData => _enemiesData;
+    public HighscoreConfig HighscoreConfig => _highscoreData.HighscoreConfig;
 }
