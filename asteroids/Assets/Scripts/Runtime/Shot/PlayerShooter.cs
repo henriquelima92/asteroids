@@ -4,9 +4,11 @@ using UnityEngine;
 [Serializable]
 public class PlayerShooter : ShotControllerBase
 {
-    public PlayerShooter(Transform anchor, float shotSpeed, float shotCadence, ObjectPool shotPool) : base(anchor, shotSpeed, shotCadence, shotPool)
-    {
+    private MapBoundaries _mapBoundaries;
 
+    public PlayerShooter(Transform anchor, float shotSpeed, float shotCadence, ObjectPool shotPool, MapBoundaries mapBoundaries) : base(anchor, shotSpeed, shotCadence, shotPool)
+    {
+        _mapBoundaries = mapBoundaries;
     }
 
     public override void Shot(Vector3 direction)
@@ -18,9 +20,8 @@ public class PlayerShooter : ShotControllerBase
 
         CooldownTime = 0;
 
-        var shot = ShotPool.GetObjectFromPool<Rigidbody2D>();
-        shot.transform.position = Anchor.position;
-        shot.gameObject.SetActive(true);
-        shot.AddForce(direction * ShotSpeed, ForceMode2D.Impulse);
+        var shot = ShotPool.GetObjectFromPool<Shot>();
+        shot.Set(_mapBoundaries);
+        shot.Move(Anchor.position, direction, ShotSpeed);
     }
 }

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496cc7ef61ee5924aa44d611b190fd37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 3466554592168972004}
+  _rigidbody: {fileID: 3466554592168972004}
 --- !u!61 &-1377933438409789744
 BoxCollider2D:
   m_ObjectHideFlags: 0

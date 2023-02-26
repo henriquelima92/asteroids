@@ -1,11 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerShip : MonoBehaviour
+public class PlayerShip : Entity
 {
-    [SerializeField] private Rigidbody2D _rigidbody2D;
-    public Rigidbody2D Rigidbody2D => _rigidbody2D;
-
     public ILife Life => _life;
     
     private IMovement _movement;
@@ -17,8 +14,11 @@ public class PlayerShip : MonoBehaviour
     private UnityAction<PlayerShip> _onDestroy;
 
 
-    public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, ILife life, PlayerInputs inputs)
+    public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, 
+        ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries)
     {
+        Set(mapBoundaries);
+
         _movement = movement;
         _rotation = rotator;
         _shooter = shooter;
@@ -26,8 +26,10 @@ public class PlayerShip : MonoBehaviour
         _inputs = inputs;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (Input.GetKey(_inputs.RotateLeft))
         {
             _rotation.SetDirectionState(DirectionState.Left);

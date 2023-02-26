@@ -13,5 +13,5 @@ public interface IMovement
 
 
     void SetMovingState(MovingState state);
-    void Move(Vector3 direction);
+    void Move(Vector3 direction, ForceMode2D forceMode = ForceMode2D.Force);
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayersController
 {
-    public List<GameObject> Initialize(PlayerData playerData)
+    public List<GameObject> Initialize(PlayerData playerData, MapBoundariesData mapBoundariesData)
     {
         var players = playerData.Players;
+        var mapBoundaries = mapBoundariesData.MapBoundaries;
         var entities = new List<GameObject>();
 
         foreach (var player in players)
@@ -18,12 +19,12 @@ public class PlayersController
             var shots = shotPool.Initialize();
             entities.AddRange(shots);
 
-            IMovement movement = new Mover(ship.Rigidbody2D, player.MoveSpeed);
-            IRotator rotator = new PlayerRotator(ship.Rigidbody2D, player.RotateSpeed);
-            IShooter shooter = new PlayerShooter(ship.transform, player.ShotSpeed, player.ShotCadence, shotPool);
+            IMovement movement = new Mover(ship.Rigidbody, player.MoveSpeed);
+            IRotator rotator = new PlayerRotator(ship.Rigidbody, player.RotateSpeed);
+            IShooter shooter = new PlayerShooter(ship.transform, player.ShotSpeed, player.ShotCadence, shotPool, mapBoundaries);
             ILife life = new Life(player.Lives, player.MaxLives);
 
-            ship.Initialize(movement, rotator, shooter, life, player.Inputs);
+            ship.Initialize(movement, rotator, shooter, life, player.Inputs, mapBoundaries);
 
             entities.Add(ship.gameObject);
         }

@@ -9,14 +9,14 @@ public class Mover : IMovement
     [field: SerializeField] public float Speed { get; protected set; }
     public MovingState MovingState { get; protected set; }
 
-    public void Move(Vector3 direction)
+    public void Move(Vector3 direction,  ForceMode2D forceMode = ForceMode2D.Force)
     {
         if (MovingState != MovingState.Thrusting)
         {
             return;
         }
 
-        _rigidbody.AddForce(direction * Speed);
+        _rigidbody.AddForce(direction * Speed, forceMode);
     }
     public void SetMovingState(MovingState state)
     {

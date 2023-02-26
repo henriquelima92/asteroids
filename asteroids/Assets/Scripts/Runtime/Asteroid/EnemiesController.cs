@@ -55,7 +55,7 @@ public class EnemiesController
 
         for (int i = 0; i < _waves[0].FindEnemyRandomRange(EnemyType.MediumAsteroid); i++)
         {
-           var asteroid = mediumAsteroidsPool.GetObjectFromPool<Asteroid>();
+            var asteroid = mediumAsteroidsPool.GetObjectFromPool<Asteroid>();
             InitializeExplodedAsteroid(asteroid, obj.position, _enemies.FindEnemy(EnemyType.MediumAsteroid).MoveSpeed, OnMediumAsteroidDestroyed);
         }
     }
@@ -91,7 +91,9 @@ public class EnemiesController
         var position = RandomUtility.GetRandomPositionAroundPoint(explosionPosition, 2f);
         var direction = RandomUtility.GetRandomDirection();
 
-        asteroid.Initialize(direction, position, moveSpeed, onDestroy);
+        asteroid.Set(_mapBoundaries);
+        asteroid.Initialize(onDestroy);
+        asteroid.Move(position, direction, moveSpeed);
     }
 
     private void InitializeAsteroid(Asteroid asteroid, float moveSpeed, UnityAction<Transform> onDestroy)
@@ -101,6 +103,8 @@ public class EnemiesController
         var position = RandomUtility.RandomPointInBox(_mapBoundaries);
         var direction = RandomUtility.GetRandomDirection();
 
-        asteroid.Initialize(direction, position, moveSpeed, onDestroy);
+        asteroid.Set(_mapBoundaries);
+        asteroid.Initialize(onDestroy);
+        asteroid.Move(position, direction, moveSpeed);
     }
 }
