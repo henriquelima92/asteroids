@@ -25,6 +25,7 @@ MonoBehaviour:
     RotateSpeed: 7
     ShotCadence: 0.1
     ShotSpeed: 10
+    ShotLifeSpan: 0.35
     Lives: 3
     MaxLives: 10
     StartPosition: {x: 0, y: 0}
