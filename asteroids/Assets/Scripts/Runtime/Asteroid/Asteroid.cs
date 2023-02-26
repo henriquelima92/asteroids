@@ -1,32 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Asteroid : Entity
+public class Asteroid : Entity 
 {
-    private UnityAction<Transform> _onDestroy;
+    private UnityAction<Asteroid> _onDestroy;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var collisionObject = collision.gameObject;
-        var collisionLayer = collisionObject.layer;
+        var collisionLayer = collision.gameObject.layer;
         
-
-        if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShot))
+        if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShot) ||
+            collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShip))
         {
-            collisionObject.SetActive(false);
-            gameObject.SetActive(false);
-            
-            _onDestroy.Invoke(transform);
-        }
-        else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShip))
-        {
-            gameObject.SetActive(false);
-
-            _onDestroy.Invoke(transform);
+            _onDestroy.Invoke(this);
         }
     }
 
-    public void Initialize(UnityAction<Transform> onDestroy)
+    public void SetOnDestroyAction(UnityAction<Asteroid> onDestroy)
     {
         _onDestroy = onDestroy;
     }

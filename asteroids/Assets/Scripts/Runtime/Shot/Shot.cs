@@ -10,6 +10,16 @@ public class Shot : Entity
         _timer.UpdateCooldown();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var collisionLayer = collision.gameObject.layer;
+
+        if(collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Initialize(float timeToDestroy)
     {
         _timer = new Timer(timeToDestroy, OnTimerEnd);

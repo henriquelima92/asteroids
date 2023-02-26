@@ -7,9 +7,8 @@ using UnityEngine.Events;
 public struct Enemy
 {
     public EnemyType EnemyType;
-    public GameObject EnemyPrefab;
-    public int MaxAmount;
-    public float MoveSpeed;
+    public AsteroidPool Pool;
+    public FloatRange MoveSpeed;
 }
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Data/Enemy/EnemyData", order = 1)]

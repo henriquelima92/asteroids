@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
   - EnemyType: 0
-    EnemyPrefab: {fileID: 4248402290146632366, guid: d7cfac8306f78874bbd000f6b2a1b37b, type: 3}
-    MaxAmount: 50
-    MoveSpeed: 0.05
+    Pool: {fileID: 6159219688698695201, guid: cf61039ce6b5d764a9936ee3703c35ba, type: 3}
+    MoveSpeed:
+      Min: 0.035
+      Max: 0.05
   - EnemyType: 1
-    EnemyPrefab: {fileID: 6213943355817866877, guid: c53a800147a4cd84dbbc338a487cf07a, type: 3}
-    MaxAmount: 50
-    MoveSpeed: 0.07
+    Pool: {fileID: -3045068270849277627, guid: 667f2532197a66b40a0b1207b8b69365, type: 3}
+    MoveSpeed:
+      Min: 0.05
+      Max: 0.07
   - EnemyType: 2
-    EnemyPrefab: {fileID: 6149600969153779763, guid: b38024649674093478803392d8b25136, type: 3}
-    MaxAmount: 50
-    MoveSpeed: 0.12
+    Pool: {fileID: 5286696963593104709, guid: 87f93c4fc49f57843a714307018fee33, type: 3}
+    MoveSpeed:
+      Min: 0.07
+      Max: 0.09
