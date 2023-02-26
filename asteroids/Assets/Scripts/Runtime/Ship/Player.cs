@@ -14,9 +14,7 @@ public struct Player
     public float MoveSpeed;
     public float RotateSpeed;
 
-    public float ShotCadence;
-    public float ShotSpeed;
-    public float ShotLifeSpan;
+    public ShotConfig ShotConfig;
 
     public int Lives;
     public int MaxLives;

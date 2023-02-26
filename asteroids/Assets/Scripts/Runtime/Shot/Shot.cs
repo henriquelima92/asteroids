@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shot : Entity
 {
+
+    private UnityAction<Shot> _onDestroy;
     private ITimer _timer;
 
     protected override void Update()
@@ -16,29 +19,25 @@ public class Shot : Entity
 
         if(collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
-            gameObject.SetActive(false);
+            _onDestroy?.Invoke(this);
         }
     }
 
-    public void Initialize(float timeToDestroy)
+    public void Initialize(float timeToDestroy, UnityAction<Shot> onDestroy)
     {
-        _timer = new Timer(timeToDestroy, OnTimerEnd);
+        _onDestroy = onDestroy;
+        _timer = new Timer(timeToDestroy, () => { _onDestroy?.Invoke(this); });
     }
 
-    public void Move(Vector3 position, Vector3 direction, float moveSpeed)
+    public void Move(Vector3 position, Vector3 direction, float speed)
     {
         _timer.ResetTimer();
 
         transform.position = position;
         gameObject.SetActive(true);
 
-        IMovement movement = new Mover(_rigidbody, moveSpeed);
+        IMovement movement = new Mover(_rigidbody, speed);
         movement.SetMovingState(MovingState.Thrusting);
         movement.Move(direction, ForceMode2D.Impulse);
-    }
-
-    private void OnTimerEnd()
-    {
-        gameObject.SetActive(false);
     }
 }

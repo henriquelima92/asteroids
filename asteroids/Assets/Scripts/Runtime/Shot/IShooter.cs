@@ -3,7 +3,7 @@ using UnityEngine;
 public interface IShooter
 {
     public Transform Anchor { get; }
-    public ObjectPool ShotPool { get; }
+    public ShotPool ShotPool { get; }
     public float ShotSpeed { get; }
     public float ShotCadence { get; }
     public float CooldownTime { get; }

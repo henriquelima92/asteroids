@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BigAsteroidPool : AsteroidPool
 {
-    public override int InitializeLayer(EnemyWave waveData, Asteroid explodedAsteroid)
+    public override int StartAsteroids(EnemyWave waveData, Asteroid explodedAsteroid)
     {
         var itemsAmount = waveData.FindEnemyRandomRange(AsteroidType);
         for (int i = 0; i < itemsAmount; i++)

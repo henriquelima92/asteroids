@@ -8,7 +8,7 @@ public abstract class ShotControllerBase : IShooter
     public float ShotSpeed { get; protected set; }
     public float ShotCadence { get; protected set; }
     public float CooldownTime { get; protected set; }
-    public ObjectPool ShotPool { get; protected set;}
+    public ShotPool ShotPool { get; protected set;}
 
     public abstract void Shot(Vector3 direction);
    
@@ -17,7 +17,7 @@ public abstract class ShotControllerBase : IShooter
         CooldownTime += Time.deltaTime;
     }
 
-    public ShotControllerBase(Transform anchor, float shotSpeed, float shotCadence, ObjectPool shotPool)
+    public ShotControllerBase(Transform anchor, float shotSpeed, float shotCadence, ShotPool shotPool)
     {
         Anchor = anchor;
         ShotCadence = shotCadence;

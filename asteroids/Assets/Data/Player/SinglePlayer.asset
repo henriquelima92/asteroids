@@ -24,9 +24,11 @@ MonoBehaviour:
       HyperSpace: 108
     MoveSpeed: 7
     RotateSpeed: 7
-    ShotCadence: 0.1
-    ShotSpeed: 10
-    ShotLifeSpan: 0.35
+    ShotConfig:
+      Pool: {fileID: 7681311134670448819, guid: 1e3513444d06628428a5138c5e4f09a0, type: 3}
+      ShotCadence: 0.1
+      ShotSpeed: 10
+      ShotLifeSpan: 0.7
     Lives: 3
     MaxLives: 10
     StartPosition: {x: 0, y: 0}

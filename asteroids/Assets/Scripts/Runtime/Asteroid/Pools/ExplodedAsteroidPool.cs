@@ -2,7 +2,7 @@
 
 public class ExplodedAsteroidPool : AsteroidPool
 {
-    public override int InitializeLayer(EnemyWave waveData, Asteroid explodedAsteroid)
+    public override int StartAsteroids(EnemyWave waveData, Asteroid explodedAsteroid)
     {
         int itemsAmount = waveData.FindEnemyRandomRange(AsteroidType);
         var point = explodedAsteroid.transform.position;

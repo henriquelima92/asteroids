@@ -22,7 +22,7 @@ public class EnemiesController
             var lastPoolIndex = _pools.Count - 1;
             if (nextLayerIndex <= lastPoolIndex)
             {
-                _enemiesCount += _pools[nextLayerIndex].InitializeLayer(_waves[_wave], asteroid);
+                _enemiesCount += _pools[nextLayerIndex].StartAsteroids(_waves[_wave], asteroid);
             }
             else
             {
@@ -66,7 +66,7 @@ public class EnemiesController
 
     private void InitializeWave()
     {
-        _enemiesCount += _pools[0].InitializeLayer(_waves[_wave]);
+        _enemiesCount += _pools[0].StartAsteroids(_waves[_wave]);
     }
 
     private void SetNextWave()

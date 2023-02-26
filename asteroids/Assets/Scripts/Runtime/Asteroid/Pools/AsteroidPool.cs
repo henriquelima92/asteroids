@@ -29,5 +29,5 @@ public abstract class AsteroidPool : GenericObjectPool<Asteroid>
         }
     }
 
-    public abstract int InitializeLayer(EnemyWave waveData, Asteroid explodedAsteroid = null);
+    public abstract int StartAsteroids(EnemyWave waveData, Asteroid explodedAsteroid = null);
 }
