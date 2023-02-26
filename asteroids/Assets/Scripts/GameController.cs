@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,34 @@ public class GameController : MonoBehaviour
     {
         _enemiesController.ResetEnemies();
         _playersController.ResetPlayers();
+    }
+
+    public void CheckGameOver()
+    {
+        if(!_playersController.HasAlivePlayers())
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        StartCoroutine(RestartGame());
+    }
+
+    private IEnumerator RestartGame()
+    {
+        var delayToRestart = 4f;
+        var currentTime = 0f;
+
+        while(currentTime < delayToRestart)
+        {
+            currentTime += Time.deltaTime;
+            Debug.Log($"Starting in {currentTime}");
+            yield return null;
+        }
+
+        ResetGame();
     }
 
     private void Update()

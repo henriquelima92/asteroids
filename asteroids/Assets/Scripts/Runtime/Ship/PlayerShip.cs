@@ -34,12 +34,17 @@ public class PlayerShip : Entity
 
     public void ResetShip()
     {
-        transform.rotation = Quaternion.identity;
-
         _movement.Reset();
         _rotation.Reset();
         _shooter.Reset();
         _life.Reset();
+
+        gameObject.SetActive(true);
+    }
+
+    public bool IsAlive()
+    {
+        return _life.IsAlive;
     }
 
     protected override void Update()
@@ -100,7 +105,10 @@ public class PlayerShip : Entity
             if(_life.IsAlive)
             {
                 _gameController.StartCoroutine(_respawn.Respawn(OnRespawn));
+                return;
             }
+
+            _gameController.CheckGameOver();
         }
     }
 

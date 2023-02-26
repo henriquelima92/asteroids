@@ -40,4 +40,16 @@ public class PlayersController
             player.ResetShip();
         }
     }
+
+    public bool HasAlivePlayers()
+    {
+        bool hasPlayersAlive = false;
+
+        foreach (var player in _players)
+        {
+            hasPlayersAlive = player.IsAlive();
+        }
+
+        return hasPlayersAlive;
+    }
 }
