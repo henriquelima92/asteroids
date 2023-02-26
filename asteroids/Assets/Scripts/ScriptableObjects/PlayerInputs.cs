@@ -8,4 +8,5 @@ public struct PlayerInputs
     public KeyCode RotateLeft;
     public KeyCode RotateRight;
     public KeyCode Shot;
+    public KeyCode HyperSpace;
 }

@@ -11,6 +11,8 @@ public class PlayerShip : Entity
     private ILife _life;
     private PlayerInputs _inputs;
 
+    private HyperSpace _hyperSpace;
+
     private UnityAction<PlayerShip> _onDestroy;
 
 
@@ -24,6 +26,7 @@ public class PlayerShip : Entity
         _shooter = shooter;
         _life = life;
         _inputs = inputs;
+        _hyperSpace = new HyperSpace(mapBoundaries, transform);
     }
 
     protected override void Update()
@@ -56,6 +59,11 @@ public class PlayerShip : Entity
         if(Input.GetKeyDown(_inputs.Shot))
         {
             _shooter.Shot(transform.up);
+        }
+
+        if(Input.GetKeyDown(_inputs.HyperSpace))
+        {
+            _hyperSpace.GoToHyperSpace();
         }
 
         _shooter.IncrementCooldown();

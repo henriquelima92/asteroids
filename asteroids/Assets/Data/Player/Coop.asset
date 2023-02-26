@@ -21,6 +21,7 @@ MonoBehaviour:
       RotateLeft: 276
       RotateRight: 275
       Shot: 256
+      HyperSpace: 108
     MoveSpeed: 10
     RotateSpeed: 10
     ShotCadence: 0.1
@@ -37,6 +38,7 @@ MonoBehaviour:
       RotateLeft: 97
       RotateRight: 100
       Shot: 304
+      HyperSpace: 306
     MoveSpeed: 10
     RotateSpeed: 10
     ShotCadence: 0.1
