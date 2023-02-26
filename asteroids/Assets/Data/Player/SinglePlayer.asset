@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _players:
   - PlayerName: Player0
-    PlayerPrefab: {fileID: 5521339630528194038, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
+    PlayerPrefab: {fileID: 8858472313837484299, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
     ShotPrefab: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
     Inputs:
       Thrust: 273

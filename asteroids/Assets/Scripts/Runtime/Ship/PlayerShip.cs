@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class PlayerShip : Entity
 {
     public ILife Life => _life;
-    
     private IMovement _movement;
     private IRotator _rotation;
     private IShooter _shooter;
     private ILife _life;
+    private IRespawn _respawn;
     private PlayerInputs _inputs;
 
     private HyperSpace _hyperSpace;
-
     private UnityAction<PlayerShip> _onDestroy;
+    private GameController _gameController;
 
 
     public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, 
-        ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries)
+        ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries, IRespawn respawn, GameController gameController)
     {
         Set(mapBoundaries);
 
@@ -26,7 +27,19 @@ public class PlayerShip : Entity
         _shooter = shooter;
         _life = life;
         _inputs = inputs;
+        _respawn = respawn;
         _hyperSpace = new HyperSpace(mapBoundaries, transform);
+        _gameController = gameController;
+    }
+
+    public void ResetShip()
+    {
+        transform.rotation = Quaternion.identity;
+
+        _movement.Reset();
+        _rotation.Reset();
+        _shooter.Reset();
+        _life.Reset();
     }
 
     protected override void Update()
@@ -81,8 +94,21 @@ public class PlayerShip : Entity
 
         if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
-            _life.RemoveLife();
+            var lifeAmount = _life.RemoveLife();
             gameObject.SetActive(false);
+
+            if(_life.IsAlive)
+            {
+                _gameController.StartCoroutine(_respawn.Respawn(OnRespawn));
+            }
         }
+    }
+
+    private void OnRespawn()
+    {
+        _movement.Reset();
+        _rotation.Reset();
+
+        gameObject.SetActive(true);
     }
 }

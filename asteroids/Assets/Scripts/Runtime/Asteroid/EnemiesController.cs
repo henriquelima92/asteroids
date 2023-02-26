@@ -37,7 +37,7 @@ public class EnemiesController
         return OnDestroyAsteroid;
     }
 
-    public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData)
+    public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData, GameController gameController)
     {
         _mapBoundaries = mapBoundariesData.MapBoundaries;
         _waves = wavesData.Waves;
@@ -59,6 +59,19 @@ public class EnemiesController
         for (int i = 0; i < _pools.Count; i++)
         {
             _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1));
+        }
+
+        InitializeWave();
+    }
+
+    public void ResetEnemies()
+    {
+        _enemiesCount = 0;
+        _wave = 0;
+
+        foreach (var pool in _pools)
+        {
+            pool.ReturnAllItemsToPool();
         }
 
         InitializeWave();

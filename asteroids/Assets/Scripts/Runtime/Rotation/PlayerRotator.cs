@@ -9,6 +9,16 @@ public class PlayerRotator : IRotator
     [field: SerializeField] public float RotationSpeed { get; protected set; }
     public DirectionState RotationState { get; protected set; }
 
+    public PlayerRotator(Rigidbody2D rigidbody2D, float rotationSpeed)
+    {
+        _rigidbody = rigidbody2D;
+        RotationSpeed = rotationSpeed;
+    }
+
+    public void Reset()
+    {
+        _rigidbody.transform.rotation = Quaternion.identity;
+    }
 
     public void Rotate()
     {
@@ -22,11 +32,5 @@ public class PlayerRotator : IRotator
     public void SetDirectionState(DirectionState direction)
     {
         RotationState = direction;
-    }
-
-    public PlayerRotator(Rigidbody2D rigidbody2D, float rotationSpeed)
-    {
-        _rigidbody = rigidbody2D;
-        RotationSpeed = rotationSpeed;
     }
 }

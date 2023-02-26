@@ -6,8 +6,18 @@ public class Mover : IMovement
 {
     [SerializeField] private Rigidbody2D _rigidbody;
 
+    public Vector2 StartPostion { get; private set; }
     [field: SerializeField] public float Speed { get; protected set; }
     public MovingState MovingState { get; protected set; }
+
+    public Mover(Rigidbody2D rigidbody, float speed, Vector2 startPosition)
+    {
+        _rigidbody = rigidbody;
+        _rigidbody.transform.position = startPosition;
+
+        Speed = speed;
+        StartPostion = startPosition;
+    }
 
     public void Move(Vector3 direction,  ForceMode2D forceMode = ForceMode2D.Force)
     {
@@ -23,9 +33,10 @@ public class Mover : IMovement
         MovingState = state;
     }
 
-    public Mover(Rigidbody2D rigidbody, float speed)
+    public void Reset()
     {
-        _rigidbody = rigidbody;
-        Speed = speed;
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = 0f;
+        _rigidbody.transform.position = StartPostion;
     }
 }

@@ -23,10 +23,9 @@ public class Asteroid : Entity
 
     public void Move(Vector3 position, Vector3 direction, float moveSpeed)
     {
-        transform.position = position;
+        IMovement movement = new Mover(_rigidbody, moveSpeed, position);
         gameObject.SetActive(true);
 
-        IMovement movement = new Mover(_rigidbody, moveSpeed);
         movement.SetMovingState(MovingState.Thrusting);
         movement.Move(direction);
     }

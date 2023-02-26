@@ -10,9 +10,27 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _playersController = new PlayersController();
-        _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData);
+        _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData, this);
 
         _enemiesController = new EnemiesController();
-        _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData);
+        _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData, this);
+    }
+
+    public void StartGame()
+    {
+
+    }
+    public void ResetGame()
+    {
+        _enemiesController.ResetEnemies();
+        _playersController.ResetPlayers();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ResetGame();
+        }
     }
 }

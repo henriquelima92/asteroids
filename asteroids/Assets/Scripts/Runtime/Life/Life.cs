@@ -4,11 +4,20 @@ using UnityEngine;
 [Serializable]
 public class Life : ILife
 {
+    public int StartLives { get; private set; }
+
     [field: SerializeField] public int Lives { get; private set; }
 
     [field: SerializeField] public int MaxLives { get; private set; }
 
     public bool IsAlive => Lives > 0;
+
+    public Life(int lives, int maxLives)
+    {
+        StartLives = lives;
+        Lives = lives;
+        MaxLives = maxLives;
+    }
 
     public int AddLife()
     {
@@ -22,9 +31,8 @@ public class Life : ILife
         return Lives;
     }
 
-    public Life(int lives, int maxLives)
+    public void Reset()
     {
-        Lives = lives;
-        MaxLives = maxLives;
+        Lives = StartLives;
     }
 }

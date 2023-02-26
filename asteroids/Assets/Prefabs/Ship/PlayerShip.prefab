@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5521339630528194032}
   - component: {fileID: 5521339630528194033}
-  - component: {fileID: 5521339630528194038}
   - component: {fileID: 5521339630528194039}
   - component: {fileID: 6237465418446100640}
+  - component: {fileID: 8858472313837484299}
   m_Layer: 7
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5521339630528194038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5521339630528194036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84750e7ec7a48ed4882d68b19cfac70f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5521339630528194039}
 --- !u!50 &5521339630528194039
 Rigidbody2D:
   serializedVersion: 4
@@ -149,3 +136,17 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
+--- !u!114 &8858472313837484299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5521339630528194036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84750e7ec7a48ed4882d68b19cfac70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 5521339630528194039}
+  _ship: {fileID: 0}

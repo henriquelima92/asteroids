@@ -12,4 +12,5 @@ public interface IRotator
 
     void SetDirectionState(DirectionState direction);
     void Rotate();
+    void Reset();
 }

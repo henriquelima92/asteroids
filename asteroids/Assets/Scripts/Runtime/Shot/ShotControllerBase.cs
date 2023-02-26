@@ -25,4 +25,10 @@ public abstract class ShotControllerBase : IShooter
         ShotSpeed = shotSpeed;
         ShotPool = shotPool;
     }
+
+    public void Reset()
+    {
+        CooldownTime = ShotCadence;
+        ShotPool.ReturnAllItemsToPool();
+    }
 }
