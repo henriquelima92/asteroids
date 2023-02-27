@@ -9,7 +9,7 @@ public class ExplodedAsteroidPool : AsteroidPool
 
         for (int i = 0; i < itemsAmount; i++)
         {
-            var position = RandomUtility.GetRandomPositionAroundPoint(point, 2f);
+            var position = RandomUtility.GetRandomPositionAroundPoint(point, 0f);
             var direction = RandomUtility.GetRandomDirection();
             var speed = Random.Range(SpeedRange.Min, SpeedRange.Max);
 
