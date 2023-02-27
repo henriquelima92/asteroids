@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private GameData _singlePlayerGameData;
+    [SerializeField] private GameData _coopGameData;
     [SerializeField] private PlayersController _playersController;
     [SerializeField] private EnemiesController _enemiesController;
     
     private IHighscore _highscore;
     private IScoreBonus _scoreBonus;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    _highscore = new Highscore();
+    //    _scoreBonus = new LifeScoreBonus(_gameData.HighscoreConfig.ScoreNewLifeThreshold);
+
+    //    _playersController = new PlayersController();
+    //    _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData, this);
+
+    //    _enemiesController = new EnemiesController();
+    //    _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData, this);
+    //}
+
+    public void StartGame(bool isSinglePlayer)
     {
+
+        var gameData = isSinglePlayer ? _singlePlayerGameData : _coopGameData;
+
         _highscore = new Highscore();
-        _scoreBonus = new LifeScoreBonus(_gameData.HighscoreConfig.ScoreNewLifeThreshold);
+        _scoreBonus = new LifeScoreBonus(gameData.HighscoreConfig.ScoreNewLifeThreshold);
 
         _playersController = new PlayersController();
-        _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData, this);
+        _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, this);
 
         _enemiesController = new EnemiesController();
-        _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData, this);
-    }
-
-    public void StartGame()
-    {
-
+        _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this);
     }
     public void ResetGame()
     {

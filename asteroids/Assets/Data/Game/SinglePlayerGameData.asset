@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bcedc3f91ba8484bba80da3b79f7603, type: 3}
-  m_Name: GameData
+  m_Name: SinglePlayerGameData
   m_EditorClassIdentifier: 
   _mapBoundariesData: {fileID: 11400000, guid: 66362d59981b49a4c9de5b1da383f487, type: 2}
   _playerData: {fileID: 11400000, guid: af318a96c44bae5438667539fe7292c5, type: 2}
