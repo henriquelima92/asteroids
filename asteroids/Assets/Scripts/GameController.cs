@@ -4,29 +4,19 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private UIController _uiController;
+    
     [SerializeField] private GameData _singlePlayerGameData;
     [SerializeField] private GameData _coopGameData;
-    [SerializeField] private PlayersController _playersController;
-    [SerializeField] private EnemiesController _enemiesController;
+
+    private PlayersController _playersController;
+    private EnemiesController _enemiesController;
     
     private IHighscore _highscore;
     private IScoreBonus _scoreBonus;
 
-    //private void Start()
-    //{
-    //    _highscore = new Highscore();
-    //    _scoreBonus = new LifeScoreBonus(_gameData.HighscoreConfig.ScoreNewLifeThreshold);
-
-    //    _playersController = new PlayersController();
-    //    _playersController.Initialize(_gameData.PlayerData, _gameData.MapBoundariesData, this);
-
-    //    _enemiesController = new EnemiesController();
-    //    _enemiesController.Initialize(_gameData.EnemiesData, _gameData.WaveData, _gameData.MapBoundariesData, this);
-    //}
-
-    public void StartGame(bool isSinglePlayer)
+    public GameData StartGame(bool isSinglePlayer)
     {
-
         var gameData = isSinglePlayer ? _singlePlayerGameData : _coopGameData;
 
         _highscore = new Highscore();
@@ -37,6 +27,8 @@ public class GameController : MonoBehaviour
 
         _enemiesController = new EnemiesController();
         _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this);
+
+        return gameData;
     }
     public void ResetGame()
     {
@@ -63,29 +55,6 @@ public class GameController : MonoBehaviour
 
     private void GameOver()
     {
-        StartCoroutine(RestartGame());
-    }
-
-    private IEnumerator RestartGame()
-    {
-        var delayToRestart = 4f;
-        var currentTime = 0f;
-
-        while(currentTime < delayToRestart)
-        {
-            currentTime += Time.deltaTime;
-            Debug.Log($"Starting in {currentTime}");
-            yield return null;
-        }
-
-        ResetGame();
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ResetGame();
-        }
+        _uiController.OnGameplayFinish();
     }
 }
