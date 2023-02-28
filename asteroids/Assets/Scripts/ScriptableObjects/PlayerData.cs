@@ -6,7 +6,7 @@ public class PlayerData : ScriptableObject
 {
 
     [SerializeField] private float _respawnTime;
-    [SerializeField] private List<Player> _players;
-    public List<Player> Players => _players;
+    [SerializeField] private List<PlayerConfig> _players;
+    public List<PlayerConfig> Players => _players;
     public float RespawnTime => _respawnTime;
 }

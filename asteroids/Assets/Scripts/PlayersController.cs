@@ -18,9 +18,9 @@ public class PlayersController
             var playerShip = Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity);
             var shotPool = Object.Instantiate(shotConfig.Pool);
 
-            IMovement movement = new Mover(playerShip.Rigidbody, player.MoveSpeed, player.StartPosition);
-            IRotator rotator = new PlayerRotator(playerShip.Rigidbody, player.RotateSpeed);
-            IShooter shooter = new PlayerShooter(playerShip.transform, player.ShotConfig.ShotSpeed, player.ShotConfig.ShotCadence, shotPool);
+            IMovement movement = new RigidbodyMovement(playerShip.Rigidbody, player.MoveSpeed, player.StartPosition);
+            IRotator rotator = new RigidbodyRotator(playerShip.Rigidbody, player.RotateSpeed);
+            IShot shooter = new PlayerShot(playerShip.transform, player.ShotConfig.ShotSpeed, player.ShotConfig.ShotCadence, shotPool);
             ILife life = new Life(player.Lives, player.MaxLives);
             IRespawn respawn = new PlayerRespawn(playerData.RespawnTime);
             IHighscore highscore = new Highscore();
