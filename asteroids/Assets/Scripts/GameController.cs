@@ -11,28 +11,22 @@ public class GameController : MonoBehaviour
 
     private PlayersController _playersController;
     private EnemiesController _enemiesController;
-    
-    private IHighscore _highscore;
-    private IScoreBonus _scoreBonus;
 
-    public GameData StartGame(bool isSinglePlayer)
+    public List<PlayerShip> StartGame(bool isSinglePlayer)
     {
         var gameData = isSinglePlayer ? _singlePlayerGameData : _coopGameData;
-
-        _highscore = new Highscore();
-        _scoreBonus = new LifeScoreBonus(gameData.HighscoreConfig.ScoreNewLifeThreshold);
-
-        _playersController = new PlayersController();
-        _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, this);
 
         _enemiesController = new EnemiesController();
         _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this);
 
-        return gameData;
+        _playersController = new PlayersController();
+        var playerShips = _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, gameData.HighscoreConfig, this,
+            null, null);
+
+        return playerShips;
     }
     public void ResetGame()
     {
-        _highscore.Reset();
         _enemiesController.ResetEnemies();
         _playersController.ResetPlayers();
     }
@@ -41,15 +35,6 @@ public class GameController : MonoBehaviour
         if(!_playersController.HasAlivePlayers())
         {
             GameOver();
-        }
-    }
-    public void IncrementHighscore(int valueToAdd)
-    {
-        _highscore.IncrementHighscore(valueToAdd);
-
-        if(_scoreBonus.IsBonusAvailable(_highscore.CurrentHighscore))
-        {
-            _playersController.IncrementPlayersLife();
         }
     }
 

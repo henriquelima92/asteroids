@@ -5,8 +5,14 @@ public class PlayerHighscorePanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _highscoreText;
     
-    public void SetHighscore(int value)
+    public void Initialize(IHighscore highscore)
     {
-        _highscoreText.text = value.ToString();
+        highscore.OnHighscoreSet += SetScore;
+        SetScore(highscore.CurrentHighscore);
+    }
+
+    private void SetScore(int score)
+    {
+        _highscoreText.text = score.ToString();
     }
 }

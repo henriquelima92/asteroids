@@ -29,6 +29,6 @@ public abstract class ShotControllerBase : IShooter
     public void Reset()
     {
         CooldownTime = ShotCadence;
-        ShotPool.ReturnAllItemsToPool();
+        GameObject.Destroy(ShotPool.gameObject);
     }
 }

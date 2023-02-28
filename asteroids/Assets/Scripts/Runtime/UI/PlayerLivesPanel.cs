@@ -6,26 +6,29 @@ public class PlayerLivesPanel : MonoBehaviour
     [SerializeField] private GameObject _lifePrefab;
     [SerializeField] private Transform _livesRoot;
 
-    private List<GameObject> _lives;
+    [SerializeField] private List<GameObject> _lives;
 
-    public void Initialize(int lives)
+    public void Initialize(ILife life)
     {
+        life.OnLifeAdded += AddLife;
+        life.OnLifeRemoved += RemoveLife;
+
         _lives = new List<GameObject>();
 
-        for(int i = 0; i < lives; i++)
+        for(int i = 0; i < life.Lives; i++)
         {
             InstantiateLife();
         }
     }
 
-    public void AddLife()
+    private void AddLife()
     {
         InstantiateLife();
     }
 
-    public void RemoveLife()
+    private void RemoveLife()
     {
-        if(_lives.Count > 0)
+        if(_lives.Count < 1)
         {
             return;
         }

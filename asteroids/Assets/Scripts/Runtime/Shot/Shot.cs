@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Shot : Entity
 {
-
     private UnityAction<Shot> _onDestroy;
     private ITimer _timer;
 

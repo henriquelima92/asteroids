@@ -4,6 +4,9 @@ using UnityEngine;
 [Serializable]
 public class Life : ILife
 {
+    public Action OnLifeAdded { get; set; }
+    public Action OnLifeRemoved { get; set; }
+
     public int StartLives { get; private set; }
 
     [field: SerializeField] public int Lives { get; private set; }
@@ -19,16 +22,16 @@ public class Life : ILife
         MaxLives = maxLives;
     }
 
-    public int AddLife()
+    public void AddLife()
     {
         Lives = Mathf.Clamp(Lives + 1, 0, MaxLives);
-        return Lives;
+        OnLifeAdded?.Invoke();
     }
 
-    public int RemoveLife()
+    public void RemoveLife()
     {
         Lives = Mathf.Clamp(Lives - 1, 0, MaxLives);
-        return Lives;
+        OnLifeRemoved?.Invoke();
     }
 
     public void Reset()

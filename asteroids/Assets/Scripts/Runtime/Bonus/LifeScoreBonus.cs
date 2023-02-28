@@ -1,23 +1,31 @@
-﻿public class LifeScoreBonus : IScoreBonus
+﻿using System;
+using UnityEngine.Events;
+
+public class LifeScoreBonus : IScoreBonus
 {
+    private readonly IHighscore _highscore;
+    private readonly UnityAction _onReceiveBonus;
+
     private int _scoreThreshold;
     private int _thresholdIndex;
 
-    public LifeScoreBonus(int scoreThreshold)
+    public LifeScoreBonus(int scoreThreshold, IHighscore highScore, UnityAction onSetScore, UnityAction onReceiveBonus)
     {
+        _highscore = highScore;
         _scoreThreshold = scoreThreshold;
         _thresholdIndex = 1;
+        _onReceiveBonus = onReceiveBonus;
+
+        onSetScore += CheckBonus;
     }
 
-    public bool IsBonusAvailable(int score)
+    public void CheckBonus()
     {
-        if(score >= _scoreThreshold * _thresholdIndex)
+        if(_highscore.CurrentHighscore >= _scoreThreshold * _thresholdIndex)
         {
             _thresholdIndex += 1;
-            return true;
+            _onReceiveBonus?.Invoke();
         }
-
-        return false;
     }
 
     public void Reset()

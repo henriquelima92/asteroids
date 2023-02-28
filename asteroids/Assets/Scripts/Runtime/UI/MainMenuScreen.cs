@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class MainMenuScreen : MonoBehaviour
     [SerializeField] private Button _coopButton;
     [SerializeField] private Button _quitButton;
 
-    private UnityAction<GameData> _onGameplayStart;
+    private UnityAction<List<PlayerShip>> _onGameplayStart;
 
     private void Start()
     {
@@ -27,15 +28,15 @@ public class MainMenuScreen : MonoBehaviour
         _quitButton.onClick.AddListener(OnQuitClick);
     }
 
-    public void SetScreenCallbacks(UnityAction<GameData> onGameplayStart)
+    public void SetScreenCallbacks(UnityAction<List<PlayerShip>> onGameplayStart)
     {
         _onGameplayStart = onGameplayStart;
     }
 
     private void OnPlayClick(bool isSinglePlayer)
     {
-        var gameData = _gameController.StartGame(isSinglePlayer);
-        _onGameplayStart?.Invoke(gameData);
+        var players = _gameController.StartGame(isSinglePlayer);
+        _onGameplayStart?.Invoke(players);
     }
 
     private void OnQuitClick()

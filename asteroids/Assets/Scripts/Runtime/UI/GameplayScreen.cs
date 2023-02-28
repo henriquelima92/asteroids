@@ -5,17 +5,17 @@ public class GameplayScreen : MonoBehaviour
 {
     [SerializeField] private List<PlayerPanel> _playersGroups;
 
-    public void OnGameStart(PlayerData playerData)
+    public void OnGameStart(List<PlayerShip> players)
     {
-        var playersAmount = playerData.Players.Count;
+        var playersAmount = players.Count;
 
         for (int i = 0; i < playersAmount; i++)
         {
-            var playerInfo = playerData.Players[i];
+            var player = players[i];
             var playerPanel = _playersGroups[i];
 
             playerPanel.gameObject.SetActive(true);
-            playerPanel.Initialize(playerInfo.Lives);
+            playerPanel.Initialize(player.Life, player.Highscore);
         }
 
         gameObject.SetActive(true);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -6,17 +7,18 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameplayScreen _gameplayScreen;
     [SerializeField] private GameoverScreen _gameoverScreen;
 
+
     private void Start()
     {
         _mainMenuScreen.SetScreenCallbacks(OnGameplayStart);
         _gameoverScreen.SetScreenCallbacks(OnReturnToMaiMenu);
     }
 
-    public void OnGameplayStart(GameData gameData)
+    public void OnGameplayStart(List<PlayerShip> players)
     {
         _mainMenuScreen.gameObject.SetActive(false);
         _gameplayScreen.gameObject.SetActive(true);
-        _gameplayScreen.OnGameStart(gameData.PlayerData);
+        _gameplayScreen.OnGameStart(players);
     }
 
     public void OnGameplayFinish()

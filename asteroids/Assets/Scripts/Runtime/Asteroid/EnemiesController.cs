@@ -60,7 +60,7 @@ public class EnemiesController
 
         for (int i = 0; i < _pools.Count; i++)
         {
-            _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1), gameController.IncrementHighscore);
+            _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1));
         }
 
         InitializeWave();
@@ -73,10 +73,10 @@ public class EnemiesController
 
         foreach (var pool in _pools)
         {
-            pool.ReturnAllItemsToPool();
+            pool.ResetPool();
         }
 
-        InitializeWave();
+        _pools.Clear();
     }
 
     private void InitializeWave()

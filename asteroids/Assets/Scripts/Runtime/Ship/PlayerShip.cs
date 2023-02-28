@@ -5,12 +5,15 @@ using UnityEngine.Events;
 public class PlayerShip : Entity
 {
     public ILife Life => _life;
+    public IHighscore Highscore => _highscore;
 
     private IMovement _movement;
     private IRotator _rotation;
     private IShooter _shooter;
     private ILife _life;
     private IRespawn _respawn;
+    private IHighscore _highscore;
+    private IScoreBonus _scoreBonus;
     private PlayerInputs _inputs;
 
     private HyperSpace _hyperSpace;
@@ -19,7 +22,8 @@ public class PlayerShip : Entity
 
 
     public void Initialize(IMovement movement, IRotator rotator, IShooter shooter, 
-        ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries, IRespawn respawn, GameController gameController)
+        ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries, 
+        IRespawn respawn, IHighscore highscore, IScoreBonus scoreBonus, GameController gameController)
     {
         Set(mapBoundaries);
 
@@ -29,6 +33,9 @@ public class PlayerShip : Entity
         _life = life;
         _inputs = inputs;
         _respawn = respawn;
+        _highscore = highscore;
+        _scoreBonus = scoreBonus;
+
         _hyperSpace = new HyperSpace(mapBoundaries, transform);
         _gameController = gameController;
     }
@@ -39,8 +46,9 @@ public class PlayerShip : Entity
         _rotation.Reset();
         _shooter.Reset();
         _life.Reset();
+        _highscore.Reset();
 
-        gameObject.SetActive(true);
+        Destroy(gameObject);
     }
 
 
@@ -96,7 +104,7 @@ public class PlayerShip : Entity
 
         if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
-            var lifeAmount = _life.RemoveLife();
+            _life.RemoveLife();
             gameObject.SetActive(false);
 
             if(_life.IsAlive)
