@@ -27,7 +27,7 @@ public abstract class AsteroidPool : GenericObjectPool<Asteroid>
         foreach (var item in PooledItems)
         {
             item.Set(MapBoundaries);
-            item.SetOnDestroyAction(OnAsteroidDestroy);
+            item.SetOnDestroyAction(OnAsteroidDestroy, Score);
         }
     }
 

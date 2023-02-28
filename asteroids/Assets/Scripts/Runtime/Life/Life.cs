@@ -24,8 +24,13 @@ public class Life : ILife
 
     public void AddLife()
     {
-        Lives = Mathf.Clamp(Lives + 1, 0, MaxLives);
-        OnLifeAdded?.Invoke();
+        var newLives = Lives + 1;
+
+        if(Lives < MaxLives)
+        {
+            Lives = newLives;
+            OnLifeAdded?.Invoke();
+        }
     }
 
     public void RemoveLife()

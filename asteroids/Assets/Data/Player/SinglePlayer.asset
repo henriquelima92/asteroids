@@ -30,5 +30,5 @@ MonoBehaviour:
       ShotSpeed: 10
       ShotLifeSpan: 0.7
     Lives: 3
-    MaxLives: 10
+    MaxLives: 4
     StartPosition: {x: 0, y: 0}

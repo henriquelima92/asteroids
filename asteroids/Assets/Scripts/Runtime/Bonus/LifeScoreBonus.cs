@@ -4,19 +4,19 @@ using UnityEngine.Events;
 public class LifeScoreBonus : IScoreBonus
 {
     private readonly IHighscore _highscore;
-    private readonly UnityAction _onReceiveBonus;
+    private readonly ILife _life;
 
     private int _scoreThreshold;
     private int _thresholdIndex;
 
-    public LifeScoreBonus(int scoreThreshold, IHighscore highScore, UnityAction onSetScore, UnityAction onReceiveBonus)
+    public LifeScoreBonus(int scoreThreshold, IHighscore highScore, ILife life)
     {
         _highscore = highScore;
+        _life = life;
         _scoreThreshold = scoreThreshold;
         _thresholdIndex = 1;
-        _onReceiveBonus = onReceiveBonus;
 
-        onSetScore += CheckBonus;
+        highScore.OnHighscoreSet += (score) => CheckBonus();
     }
 
     public void CheckBonus()
@@ -24,7 +24,7 @@ public class LifeScoreBonus : IScoreBonus
         if(_highscore.CurrentHighscore >= _scoreThreshold * _thresholdIndex)
         {
             _thresholdIndex += 1;
-            _onReceiveBonus?.Invoke();
+            _life.AddLife();
         }
     }
 

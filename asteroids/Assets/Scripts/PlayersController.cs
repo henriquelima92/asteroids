@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,16 +19,11 @@ public class PlayersController
         var players = playerData.Players;
         var mapBoundaries = mapBoundariesData.MapBoundaries;
 
-        var playersLives = new List<ILife>();
-        var playersHighscores = new List<IHighscore>();
-
         foreach (var player in players)
         {
             var shotConfig = player.ShotConfig;
-
-            var playerShip = UnityEngine.Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity);
-            var shotPool = UnityEngine.Object.Instantiate(shotConfig.Pool);
-            shotPool.SetData(mapBoundaries, shotConfig.ShotLifeSpan);
+            var playerShip = Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity);
+            var shotPool = Object.Instantiate(shotConfig.Pool);
 
             IMovement movement = new Mover(playerShip.Rigidbody, player.MoveSpeed, player.StartPosition);
             IRotator rotator = new PlayerRotator(playerShip.Rigidbody, player.RotateSpeed);
@@ -37,8 +31,9 @@ public class PlayersController
             ILife life = new Life(player.Lives, player.MaxLives);
             IRespawn respawn = new PlayerRespawn(4f);
             IHighscore highscore = new Highscore();
-            IScoreBonus scoreBonus = new LifeScoreBonus(highscoreConfig.ScoreNewLifeThreshold, highscore, onDestroyAsteroid, onAddLife);
+            IScoreBonus scoreBonus = new LifeScoreBonus(highscoreConfig.ScoreNewLifeThreshold, highscore, life);
 
+            shotPool.SetData(mapBoundaries, shotConfig.ShotLifeSpan, highscore);
             playerShip.Initialize(movement, rotator, shooter, life, player.Inputs, mapBoundaries, respawn, highscore, scoreBonus, gameController);
             _players.Add(playerShip);
         }

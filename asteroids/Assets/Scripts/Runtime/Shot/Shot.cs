@@ -3,8 +3,11 @@ using UnityEngine.Events;
 
 public class Shot : Entity
 {
-    private UnityAction<Shot> _onDestroy;
+    public IHighscore Highscore { get; private set; }
     private ITimer _timer;
+
+    private UnityAction<Shot> _onDestroy;
+    
 
     protected override void Update()
     {
@@ -22,8 +25,10 @@ public class Shot : Entity
         }
     }
 
-    public void Initialize(float timeToDestroy, UnityAction<Shot> onDestroy)
+    public void Initialize(float timeToDestroy, UnityAction<Shot> onDestroy, IHighscore highscore)
     {
+        Highscore = highscore;
+
         _onDestroy = onDestroy;
         _timer = new Timer(timeToDestroy, () => { _onDestroy?.Invoke(this); });
     }
