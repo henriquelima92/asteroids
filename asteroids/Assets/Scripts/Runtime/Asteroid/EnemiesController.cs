@@ -13,6 +13,7 @@ public class EnemiesController
 
     private int _wave;
     private int _enemiesCount;
+    private float _waveStartDelay;
 
    
     public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData, GameController gameController)
@@ -20,6 +21,7 @@ public class EnemiesController
         _gameController = gameController;
         _mapBoundaries = mapBoundariesData.MapBoundaries;
         _waves = wavesData.Waves;
+        _waveStartDelay = enemiesData.WaveStartDelay;
 
         var enemies = enemiesData.Enemies;
 
@@ -83,7 +85,7 @@ public class EnemiesController
 
     private IEnumerator InitializeWave()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(_waveStartDelay);
         _enemiesCount += _pools[0].StartAsteroids(_waves[_wave]);
     }
 

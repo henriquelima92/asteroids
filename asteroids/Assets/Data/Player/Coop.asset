@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d557b65fb6e07e247a41e6f579b58208, type: 3}
   m_Name: Coop
   m_EditorClassIdentifier: 
+  _respawnTime: 2
   _players:
   - PlayerName: Player0
     PlayerPrefab: {fileID: 8858472313837484299, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}

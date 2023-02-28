@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +19,7 @@ public class GameController : MonoBehaviour
         _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this);
 
         _playersController = new PlayersController();
-        var playerShips = _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, gameData.HighscoreConfig, this,
-            null, null);
+        var playerShips = _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, gameData.HighscoreConfig, this);
 
         return playerShips;
     }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78af7a462e4f6f24ab265dc7caab65e9, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
+  _waveStartDelay: 1.5
   _enemies:
   - EnemyType: 0
     Pool: {fileID: 6159219688698695201, guid: cf61039ce6b5d764a9936ee3703c35ba, type: 3}

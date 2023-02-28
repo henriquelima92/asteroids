@@ -1,18 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayersController
 {
     private List<PlayerShip> _players;
 
-    public List<PlayerShip> Initialize(
-        PlayerData playerData, 
-        MapBoundariesData mapBoundariesData, 
-        HighscoreConfig highscoreConfig, 
-        GameController gameController,
-        UnityAction onDestroyAsteroid,
-        UnityAction onAddLife)
+    public List<PlayerShip> Initialize(PlayerData playerData, MapBoundariesData mapBoundariesData, HighscoreConfig highscoreConfig, GameController gameController)
     {
         _players = new List<PlayerShip>();
 
@@ -29,7 +22,7 @@ public class PlayersController
             IRotator rotator = new PlayerRotator(playerShip.Rigidbody, player.RotateSpeed);
             IShooter shooter = new PlayerShooter(playerShip.transform, player.ShotConfig.ShotSpeed, player.ShotConfig.ShotCadence, shotPool);
             ILife life = new Life(player.Lives, player.MaxLives);
-            IRespawn respawn = new PlayerRespawn(4f);
+            IRespawn respawn = new PlayerRespawn(playerData.RespawnTime);
             IHighscore highscore = new Highscore();
             IScoreBonus scoreBonus = new LifeScoreBonus(highscoreConfig.ScoreNewLifeThreshold, highscore, life);
 
