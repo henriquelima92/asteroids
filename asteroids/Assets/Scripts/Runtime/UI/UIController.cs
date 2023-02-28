@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
+        LockCursor();
+
         _mainMenuScreen.SetScreenCallbacks(OnGameplayStart);
         _gameoverScreen.SetScreenCallbacks(OnReturnToMaiMenu);
     }
@@ -32,5 +34,11 @@ public class UIController : MonoBehaviour
 
         _gameoverScreen.gameObject.SetActive(false);
         _mainMenuScreen.gameObject.SetActive(true);
+    }
+
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
