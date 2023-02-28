@@ -1,47 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemiesController
 {
+    private GameController _gameController;
     private MapBoundaries _mapBoundaries;
     private List<EnemyWave> _waves;
-    private EnemiesData _enemies;
 
     private List<AsteroidPool> _pools;
 
     private int _wave;
     private int _enemiesCount;
 
-    private UnityAction<Asteroid> GetNextLayerAsteroidAction(int nextLayerIndex)
-    {
-        void OnDestroyAsteroid(Asteroid asteroid)
-        {
-            _enemiesCount -= 1;
-
-            var lastPoolIndex = _pools.Count - 1;
-            if (nextLayerIndex <= lastPoolIndex)
-            {
-                _enemiesCount += _pools[nextLayerIndex].StartAsteroids(_waves[_wave], asteroid);
-            }
-            else
-            {
-                if(_enemiesCount <= 0)
-                {
-                    SetNextWave();
-                    InitializeWave();
-                }
-            }
-        }
-
-        return OnDestroyAsteroid;
-    }
-
+   
     public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData, GameController gameController)
     {
+        _gameController = gameController;
         _mapBoundaries = mapBoundariesData.MapBoundaries;
         _waves = wavesData.Waves;
-        _enemies = enemiesData;
 
         var enemies = enemiesData.Enemies;
 
@@ -63,7 +41,7 @@ public class EnemiesController
             _pools[i].Initialize(GetNextLayerAsteroidAction(i + 1));
         }
 
-        InitializeWave();
+        _gameController.StartCoroutine(InitializeWave());
     }
 
     public void ResetEnemies()
@@ -79,8 +57,33 @@ public class EnemiesController
         _pools.Clear();
     }
 
-    private void InitializeWave()
+    private UnityAction<Asteroid> GetNextLayerAsteroidAction(int nextLayerIndex)
     {
+        void OnDestroyAsteroid(Asteroid asteroid)
+        {
+            _enemiesCount -= 1;
+
+            var lastPoolIndex = _pools.Count - 1;
+            if (nextLayerIndex <= lastPoolIndex)
+            {
+                _enemiesCount += _pools[nextLayerIndex].StartAsteroids(_waves[_wave], asteroid);
+            }
+            else
+            {
+                if (_enemiesCount <= 0)
+                {
+                    SetNextWave();
+                    _gameController.StartCoroutine(InitializeWave());
+                }
+            }
+        }
+
+        return OnDestroyAsteroid;
+    }
+
+    private IEnumerator InitializeWave()
+    {
+        yield return new WaitForSeconds(1.5f);
         _enemiesCount += _pools[0].StartAsteroids(_waves[_wave]);
     }
 
