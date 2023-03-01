@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5b47f4ec950fd48b68344c40a28339, type: 3}
   m_Name: Waves
   m_EditorClassIdentifier: 
+  _enemiesFlow: 000000000100000002000000
   _waves:
-  - ScoreThreshold: 0
-    Enemies:
+  - Enemies:
     - EnemyType: 0
       Range:
         Min: 1
@@ -27,17 +27,10 @@ MonoBehaviour:
       Range:
         Min: 2
         Max: 3
-  - ScoreThreshold: 0
-    Enemies:
-    - EnemyType: 0
-      Range:
+    RandomAppearanceEnemies:
+    - EnemyType: 3
+      TimeToAppear:
         Min: 3
         Max: 5
-    - EnemyType: 1
-      Range:
-        Min: 3
-        Max: 5
-    - EnemyType: 2
-      Range:
-        Min: 3
-        Max: 5
+      AppearanceProbability: 50
+      ShotProbability: 30

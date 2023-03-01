@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class BigAsteroidPool : EnemyPool
 {
-    public override int StartEnemy(EnemyWaveConfig waveData, Enemy explodedAsteroid)
+    public override int StartEnemy(Enemy explodedAsteroid)
     {
-        var itemsAmount = waveData.FindEnemyRandomRange(EnemyType);
+        var range = EnemyRangeConfig.Range;
+        int itemsAmount = Random.Range(range.Min, range.Max);
+       
         for (int i = 0; i < itemsAmount; i++)
         {
             var position = RandomUtility.RandomPointInBox(MapBoundaries);

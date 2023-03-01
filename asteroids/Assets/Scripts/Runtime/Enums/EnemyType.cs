@@ -4,6 +4,6 @@
     MediumAsteroid,
     SmallAsteroid,
 
-    DumbSaucer,
-    SmartSaucer
+    SmallSaucer,
+    BigSaucer
 }

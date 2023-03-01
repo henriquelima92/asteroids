@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public abstract class EnemyPool : GenericObjectPool<Enemy>
 {
+    protected EnemyRangeConfig EnemyRangeConfig;
     protected MapBoundaries MapBoundaries;
     protected FloatRange SpeedRange;
     protected EnemyType EnemyType;
@@ -30,10 +30,15 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
             item.Initialize(Score, OnEnemyDestroyed);
         }
     }
-    public void ResetPool()
+    
+
+    public abstract int StartEnemy(Enemy enemy = null);
+    public virtual void SetWaveConfig(EnemyWaveConfig waveConfig) 
+    {
+        EnemyRangeConfig = waveConfig.FindEnemyRange(EnemyType);
+    }
+    public virtual void ResetPool()
     {
         Destroy(gameObject);
     }
-
-    public abstract int StartEnemy(EnemyWaveConfig waveData, Enemy enemy = null);
 }
