@@ -38,7 +38,7 @@ MonoBehaviour:
   - EnemyType: 3
     Pool: {fileID: 8660450914434901052, guid: eed435f75dc745441b77bfba2b887a42, type: 3}
     MoveSpeed:
-      Min: 0.07
-      Max: 0.09
+      Min: 1
+      Max: 1.5
     Score: 1000
     RandomAppearance: 1

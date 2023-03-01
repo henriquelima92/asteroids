@@ -28,6 +28,12 @@ public static class RandomUtility
         return pos;
     }
 
+    public static bool CanDo(float probability)
+    {
+        System.Random random = new System.Random();
+        return random.NextDouble() < (probability / 100);
+    }
+
     private static bool IsInsideSafeArea(Vector2 objectPosition, Vector2 objectSize, Vector2 safeAreaPosition, Vector2 safeAreaSize)
     {
         Rect safeAreaRect = new Rect(safeAreaPosition, safeAreaSize);

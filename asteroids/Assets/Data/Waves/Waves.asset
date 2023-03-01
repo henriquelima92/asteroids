@@ -30,7 +30,7 @@ MonoBehaviour:
     RandomAppearanceEnemies:
     - EnemyType: 3
       TimeToAppear:
-        Min: 3
+        Min: 2
         Max: 5
       AppearanceProbability: 50
       ShotProbability: 30

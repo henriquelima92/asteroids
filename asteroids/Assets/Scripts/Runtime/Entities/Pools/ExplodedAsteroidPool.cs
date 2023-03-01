@@ -2,7 +2,7 @@
 
 public class ExplodedAsteroidPool : EnemyPool
 {
-    public override int StartEnemy(Enemy explodedAsteroid)
+    public override void StartEnemy(Enemy explodedAsteroid)
     {
         var range = EnemyRangeConfig.Range;
         int itemsAmount = Random.Range(range.Min, range.Max);
@@ -22,6 +22,6 @@ public class ExplodedAsteroidPool : EnemyPool
             movement.Move(direction);
         }
 
-        return itemsAmount;
+        WaveState.EnemiesCount += itemsAmount;
     }
 }

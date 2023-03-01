@@ -8,6 +8,7 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     protected FloatRange SpeedRange;
     protected EnemyType EnemyType;
     protected int Score;
+    protected IWaveState WaveState;
 
     public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score)
     {
@@ -16,8 +17,10 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
         EnemyType = enemyType;
         Score = score;
     }
-    public void Initialize(UnityAction<Enemy> onDestroy)
+    public void Initialize(IWaveState waveState, UnityAction<Enemy> onDestroy = null)
     {
+        WaveState = waveState;
+
         void OnEnemyDestroyed(Enemy asteroid)
         {
             ReturnToPool(asteroid);
@@ -32,7 +35,10 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     }
     
 
-    public abstract int StartEnemy(Enemy enemy = null);
+    public abstract void StartEnemy(Enemy enemy = null);
+
+    public virtual void StopEnemy() { }
+
     public virtual void SetWaveConfig(EnemyWaveConfig waveConfig) 
     {
         EnemyRangeConfig = waveConfig.FindEnemyRange(EnemyType);
