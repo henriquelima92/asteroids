@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,13 +10,15 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     protected EnemyType EnemyType;
     protected int Score;
     protected IWaveState WaveState;
+    protected List<PlayerShip> Players;
 
-    public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score)
+    public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score, List<PlayerShip> players)
     {
         MapBoundaries = mapBoundaries;
         SpeedRange = speedRange;
         EnemyType = enemyType;
         Score = score;
+        Players = players;
     }
     public void Initialize(IWaveState waveState, UnityAction<Enemy> onDestroy = null)
     {

@@ -20,5 +20,9 @@ public class Asteroid : Enemy
 
             OnDestroy.Invoke(this);
         }
+        else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.Saucer))
+        {
+            OnDestroy.Invoke(this);
+        }
     }
 }

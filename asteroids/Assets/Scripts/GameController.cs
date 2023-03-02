@@ -15,11 +15,11 @@ public class GameController : MonoBehaviour
     {
         var gameData = isSinglePlayer ? _singlePlayerGameData : _coopGameData;
 
-        _enemiesController = new EnemiesController();
-        _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this);
-
         _playersController = new PlayersController();
         var playerShips = _playersController.Initialize(gameData.PlayerData, gameData.MapBoundariesData, gameData.HighscoreConfig, this);
+
+        _enemiesController = new EnemiesController();
+        _enemiesController.Initialize(gameData.EnemiesData, gameData.WaveData, gameData.MapBoundariesData, this, playerShips);
 
         return playerShips;
     }

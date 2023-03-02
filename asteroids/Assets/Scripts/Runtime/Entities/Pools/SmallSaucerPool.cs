@@ -63,7 +63,9 @@ public class SmallSaucerPool : EnemyPool
         var xPosition = direction == Vector2.right ? MapBoundaries.Left : MapBoundaries.Right;
         var position = new Vector2(xPosition, yPosition);
 
-        var saucer = GetFromPool();
+        var saucer = GetFromPool() as Saucer;
+        saucer.SetPlayers(Players);
+
         IMovement movement = new RigidbodyMovement(saucer.Rigidbody, speed, position);
 
         saucer.gameObject.SetActive(true);

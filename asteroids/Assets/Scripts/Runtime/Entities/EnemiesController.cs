@@ -5,7 +5,8 @@ public class EnemiesController
 {
     private WaveController _waveController;
   
-    public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData, GameController gameController)
+    public void Initialize(EnemiesData enemiesData, WavesData wavesData, MapBoundariesData mapBoundariesData, GameController gameController, 
+        List<PlayerShip> players)
     {
         var mapBoundaries = mapBoundariesData.MapBoundaries;
         var enemyConfigs = enemiesData.Enemies;
@@ -16,7 +17,7 @@ public class EnemiesController
             var enemyData = enemyConfigs[i];
 
             var pool = Object.Instantiate(enemyData.Pool);
-            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score);
+            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score, players);
             pools.Add(enemyData.EnemyType, pool);
         }
 

@@ -1,7 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Saucer : Enemy
 {
+    public List<PlayerShip> _players;
+
+    public void SetPlayers(List<PlayerShip> players)
+    {
+        _players = players;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var collisionLayer = collision.gameObject.layer;
@@ -22,6 +30,15 @@ public class Saucer : Enemy
         }
         else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
+            var saucer = collision.GetComponent<Saucer>();
+            foreach (var player in _players)
+            {
+                if(player.Life.IsAlive)
+                {
+                    player.Highscore.IncrementHighscore(Score);
+                }
+            }
+
             OnDestroy.Invoke(this);
         }
     }

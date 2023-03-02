@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7404758969512430538}
   - component: {fileID: 1102436574571115716}
   - component: {fileID: 4195605334605540350}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SmallSaucer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 7404758969512430538}
+  _players: []
 --- !u!61 &4195605334605540350
 BoxCollider2D:
   m_ObjectHideFlags: 0
