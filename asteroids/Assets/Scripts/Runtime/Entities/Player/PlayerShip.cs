@@ -102,7 +102,7 @@ public class PlayerShip : Entity
     {
         var collisionLayer = collision.gameObject.layer;
 
-        if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
+        if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid) || collisionLayer == LayerMask.NameToLayer(EntityUtility.Saucer))
         {
             _life.RemoveLife();
             gameObject.SetActive(false);

@@ -10,4 +10,6 @@ public abstract class Enemy : Entity
         Score = score;
         OnDestroy = onDestroy;
     }
+
+    public virtual void Stop() { }
 }

@@ -20,25 +20,25 @@ MonoBehaviour:
       Min: 0.035
       Max: 0.05
     Score: 100
-    RandomAppearance: 0
+    CustomConfigData: {fileID: 0}
   - EnemyType: 1
     Pool: {fileID: -3045068270849277627, guid: 667f2532197a66b40a0b1207b8b69365, type: 3}
     MoveSpeed:
       Min: 0.05
       Max: 0.07
     Score: 200
-    RandomAppearance: 0
+    CustomConfigData: {fileID: 0}
   - EnemyType: 2
     Pool: {fileID: 5286696963593104709, guid: 87f93c4fc49f57843a714307018fee33, type: 3}
     MoveSpeed:
       Min: 0.07
       Max: 0.09
     Score: 500
-    RandomAppearance: 0
+    CustomConfigData: {fileID: 0}
   - EnemyType: 3
     Pool: {fileID: 8660450914434901052, guid: eed435f75dc745441b77bfba2b887a42, type: 3}
     MoveSpeed:
       Min: 1
       Max: 1.5
     Score: 1000
-    RandomAppearance: 1
+    CustomConfigData: {fileID: 11400000, guid: fc0e4774cc3dda840bd89672cbd09438, type: 2}

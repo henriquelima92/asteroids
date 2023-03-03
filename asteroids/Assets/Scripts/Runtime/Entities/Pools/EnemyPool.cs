@@ -11,14 +11,17 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     protected int Score;
     protected IWaveState WaveState;
     protected List<PlayerShip> Players;
+    protected CustomConfigData CustomConfigData;
 
-    public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score, List<PlayerShip> players)
+    public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score, List<PlayerShip> players,
+        CustomConfigData customConfigData)
     {
         MapBoundaries = mapBoundaries;
         SpeedRange = speedRange;
         EnemyType = enemyType;
         Score = score;
         Players = players;
+        CustomConfigData = customConfigData;
     }
     public void Initialize(IWaveState waveState, UnityAction<Enemy> onDestroy = null)
     {

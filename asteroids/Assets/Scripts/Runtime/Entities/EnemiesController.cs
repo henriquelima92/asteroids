@@ -17,7 +17,7 @@ public class EnemiesController
             var enemyData = enemyConfigs[i];
 
             var pool = Object.Instantiate(enemyData.Pool);
-            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score, players);
+            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score, players, enemyData.CustomConfigData);
             pools.Add(enemyData.EnemyType, pool);
         }
 

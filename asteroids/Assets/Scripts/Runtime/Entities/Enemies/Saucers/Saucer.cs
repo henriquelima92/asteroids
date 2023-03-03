@@ -5,10 +5,8 @@ public class Saucer : Enemy
 {
     public List<PlayerShip> _players;
 
-    public void SetPlayers(List<PlayerShip> players)
-    {
-        _players = players;
-    }
+    private SaucerMovement _movement;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,12 +26,12 @@ public class Saucer : Enemy
 
             OnDestroy.Invoke(this);
         }
-        else if(collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
+        else if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
             var saucer = collision.GetComponent<Saucer>();
             foreach (var player in _players)
             {
-                if(player.Life.IsAlive)
+                if (player.Life.IsAlive)
                 {
                     player.Highscore.IncrementHighscore(Score);
                 }
@@ -41,5 +39,18 @@ public class Saucer : Enemy
 
             OnDestroy.Invoke(this);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        _movement.UpdateMovement();
+    }
+
+    public void InitializeSaucer(List<PlayerShip> players, IMovement movement)
+    {
+        _players = players;
+        _movement = movement as SaucerMovement;
     }
 }

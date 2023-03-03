@@ -64,13 +64,14 @@ public class SmallSaucerPool : EnemyPool
         var position = new Vector2(xPosition, yPosition);
 
         var saucer = GetFromPool() as Saucer;
-        saucer.SetPlayers(Players);
+        IMovement movement = new SaucerMovement(saucer.Rigidbody, speed, position, (CustomConfigData as SaucerCustomConfigData).Config);
 
-        IMovement movement = new RigidbodyMovement(saucer.Rigidbody, speed, position);
-
+        saucer.InitializeSaucer(Players, movement);
+        
         saucer.gameObject.SetActive(true);
         movement.SetMovingState(MovingState.Thrusting);
         movement.Move(direction, ForceMode2D.Impulse);
+
     }
     
     private void SetNewTimeToAppear()
