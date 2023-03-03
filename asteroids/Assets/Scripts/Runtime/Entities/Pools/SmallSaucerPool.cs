@@ -44,7 +44,6 @@ public class SmallSaucerPool : EnemyPool
                 {
                     Debug.Log("Instantiating");
                     InstantiateSaucer();
-                    WaveState.EnemiesCount += 1;
                 }
 
                 SetNewTimeToAppear();
@@ -63,15 +62,19 @@ public class SmallSaucerPool : EnemyPool
         var xPosition = direction == Vector2.right ? MapBoundaries.Left : MapBoundaries.Right;
         var position = new Vector2(xPosition, yPosition);
 
+        var saucerConfig = (CustomConfigData as SaucerCustomConfigData).Config;
         var saucer = GetFromPool() as Saucer;
-        IMovement movement = new SaucerMovement(saucer.Rigidbody, speed, position, (CustomConfigData as SaucerCustomConfigData).Config);
+        IMovement movement = new SaucerMovement(saucer.Rigidbody, speed, position, saucerConfig);
 
-        saucer.InitializeSaucer(Players, movement);
+        var enemyShotPool = Instantiate(saucerConfig.Pool);
+        enemyShotPool.SetData(MapBoundaries, saucerConfig.ShotLifeSpan);
+        IShot shooter = new SmallSaucerShot(saucer.transform, saucerConfig.ShotSpeed, saucerConfig.ShotCadence, enemyShotPool);
+
+        saucer.InitializeSaucer(Players, movement, shooter);
         
         saucer.gameObject.SetActive(true);
         movement.SetMovingState(MovingState.Thrusting);
         movement.Move(direction, ForceMode2D.Impulse);
-
     }
     
     private void SetNewTimeToAppear()

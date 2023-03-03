@@ -31,5 +31,38 @@ MonoBehaviour:
     - EnemyType: 3
       TimeToAppear:
         Min: 2
+        Max: 3
+      AppearanceProbability: 50
+  - Enemies:
+    - EnemyType: 0
+      Range:
+        Min: 1
         Max: 2
-      AppearanceProbability: 100
+    - EnemyType: 1
+      Range:
+        Min: 1
+        Max: 3
+    - EnemyType: 2
+      Range:
+        Min: 2
+        Max: 3
+    RandomAppearanceEnemies: []
+  - Enemies:
+    - EnemyType: 0
+      Range:
+        Min: 1
+        Max: 2
+    - EnemyType: 1
+      Range:
+        Min: 1
+        Max: 3
+    - EnemyType: 2
+      Range:
+        Min: 2
+        Max: 3
+    RandomAppearanceEnemies:
+    - EnemyType: 3
+      TimeToAppear:
+        Min: 2
+        Max: 3
+      AppearanceProbability: 90

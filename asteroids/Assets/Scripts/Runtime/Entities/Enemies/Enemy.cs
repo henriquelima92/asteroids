@@ -11,5 +11,5 @@ public abstract class Enemy : Entity
         OnDestroy = onDestroy;
     }
 
-    public virtual void Stop() { }
+    public virtual void ResetEnemy() { }
 }

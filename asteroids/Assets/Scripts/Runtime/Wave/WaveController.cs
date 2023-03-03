@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class WaveController
+public class WaveController
 {
     private GameController _gameController;
     private List<EnemyType> _enemiesFlow;
@@ -18,7 +18,7 @@ public partial class WaveController
         _enemyPools = enemyPools;
         _gameController = gameController;
 
-        _waveState = new WaveState(waveStartDelay, waveData.EnemiesFlow.Count - 1);
+        _waveState = new WaveState(waveStartDelay, waveData.Waves.Count - 1, waveData.EnemiesFlow.Count - 1);
 
         for (int i = 0; i < _enemiesFlow.Count; i++)
         {
@@ -52,7 +52,7 @@ public partial class WaveController
 
         SetWaveConfigInPools(_waves[_waveState.CurrentWave]);
 
-        //StartFlowEnemies();
+        StartFlowEnemies();
         StartRandomAppearanceEnemies();
     }
 
@@ -82,7 +82,7 @@ public partial class WaveController
     {
         _waveState.EnemiesCount -= 1;
 
-        var lastPoolIndex = _waveState.WavesAmount;
+        var lastPoolIndex = _waveState.EnemyLayers;
         if (nextLayerIndex <= lastPoolIndex)
         {
             _enemyPools[_enemiesFlow[nextLayerIndex]].StartEnemy(enemy);

@@ -89,7 +89,7 @@ public class PlayerShip : Entity
             _hyperSpace.GoToHyperSpace();
         }
 
-        _shooter.IncrementCooldown();
+        _shooter.Update();
     }
 
     private void FixedUpdate()
@@ -102,7 +102,8 @@ public class PlayerShip : Entity
     {
         var collisionLayer = collision.gameObject.layer;
 
-        if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid) || collisionLayer == LayerMask.NameToLayer(EntityUtility.Saucer))
+        if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid) || collisionLayer == LayerMask.NameToLayer(EntityUtility.Saucer)
+            || collisionLayer == LayerMask.NameToLayer(EntityUtility.EnemyShot))
         {
             _life.RemoveLife();
             gameObject.SetActive(false);

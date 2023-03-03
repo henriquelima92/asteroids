@@ -57,11 +57,6 @@ public class SaucerMovement : IMovement
 
     public void UpdateMovement()
     {
-        if(MovingState != MovingState.Thrusting)
-        {
-            return;
-        }
-
         if (_rigidbody.velocity.magnitude > Speed)
         {
             _rigidbody.velocity = _horizontalDirection + _verticalDirection * Speed;

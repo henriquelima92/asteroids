@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1913163853400856367}
-  - component: {fileID: 7681311134670448819}
+  - component: {fileID: -990446049911021487}
   m_Layer: 0
-  m_Name: ShotPool
+  m_Name: EnemyShotPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7681311134670448819
+--- !u!114 &-990446049911021487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6546804120439242385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c88ebe1cfe3d714997bd7107bfb2730, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d0f13535fd3ed40ad28ab8edcd38ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialCount: 20
-  _prefab: {fileID: 3587801291061924345, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
+  _initialCount: 10
+  _prefab: {fileID: 2319396508671424841, guid: c154e1bae0640764b8c528a797b45be0, type: 3}
   ItemsInUse: []

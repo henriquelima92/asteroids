@@ -6,6 +6,7 @@ public static class EntityUtility
     public static string PlayerShip = "PlayerShip";
     public static string Asteroid = "Asteroid";
     public static string Saucer = "Saucer";
+    public static string EnemyShot = "EnemyShot";
 
     public static bool IsPlayerShot(GameObject entity)
     {

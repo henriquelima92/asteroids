@@ -6,6 +6,7 @@ public class Saucer : Enemy
     public List<PlayerShip> _players;
 
     private SaucerMovement _movement;
+    private IShot _shooter;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,6 +19,7 @@ public class Saucer : Enemy
             playerShip.Highscore.IncrementHighscore(Score);
 
             OnDestroy.Invoke(this);
+            ResetEnemy();
         }
         else if (collisionLayer == LayerMask.NameToLayer(EntityUtility.PlayerShot))
         {
@@ -25,6 +27,7 @@ public class Saucer : Enemy
             shot.Highscore.IncrementHighscore(Score);
 
             OnDestroy.Invoke(this);
+            ResetEnemy();
         }
         else if (collisionLayer == LayerMask.NameToLayer(EntityUtility.Asteroid))
         {
@@ -37,6 +40,7 @@ public class Saucer : Enemy
                 }
             }
 
+            ResetEnemy();
             OnDestroy.Invoke(this);
         }
     }
@@ -45,12 +49,25 @@ public class Saucer : Enemy
     {
         base.Update();
 
+        if (_movement.MovingState != MovingState.Thrusting)
+        {
+            return;
+        }
+
         _movement.UpdateMovement();
+        _shooter.Update();
     }
 
-    public void InitializeSaucer(List<PlayerShip> players, IMovement movement)
+    public void InitializeSaucer(List<PlayerShip> players, IMovement movement, IShot shooter)
     {
         _players = players;
         _movement = movement as SaucerMovement;
+        _shooter = shooter;
+    }
+
+    public override void ResetEnemy()
+    {
+        _movement.Reset();
+        _shooter.Reset();
     }
 }

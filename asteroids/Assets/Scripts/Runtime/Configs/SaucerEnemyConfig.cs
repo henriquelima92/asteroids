@@ -3,7 +3,10 @@
 [Serializable]
 public class SaucerEnemyConfig
 {
+    public EnemyShotPool Pool;
     public FloatRange RangeTimeToChangeDirection;
-    public FloatRange RangeTimeToShot;
-    public FloatRange ShotRangeSpeed;
+
+    public float ShotLifeSpan;
+    public float ShotSpeed;
+    public float ShotCadence;
 }

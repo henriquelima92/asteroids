@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: SaucerCustomConfig
   m_EditorClassIdentifier: 
   _config:
+    Pool: {fileID: -990446049911021487, guid: 15af50a41807c7044a8395a77fdd5d68, type: 3}
     RangeTimeToChangeDirection:
       Min: 1
       Max: 1
-    RangeTimeToShot:
-      Min: 0
-      Max: 0
-    ShotRangeSpeed:
-      Min: 0
-      Max: 0
+    ShotLifeSpan: 1
+    ShotSpeed: 0.015
+    ShotCadence: 3

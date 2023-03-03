@@ -2,6 +2,8 @@
 
 public class WaveState : IWaveState
 {
+    public int EnemyLayers { get; }
+
     public int EnemiesCount { get; set; }
 
     public int CurrentWave { get; private set; }
@@ -10,8 +12,9 @@ public class WaveState : IWaveState
 
     public int WavesAmount { get; private set; }
 
-    public WaveState(float startDelay, int wavesAmount)
+    public WaveState(float startDelay, int wavesAmount, int enemyLayers)
     {
+        EnemyLayers = enemyLayers;
         WavesAmount = wavesAmount;
         StartDelay = startDelay;
         CurrentWave = 0;
@@ -19,7 +22,7 @@ public class WaveState : IWaveState
 
     public void GoToNextWave()
     {
-        CurrentWave = Mathf.Clamp(CurrentWave + 1, 0, WavesAmount);
+         CurrentWave = Mathf.Clamp(CurrentWave + 1, 0, WavesAmount);
     }
 
     public void Reset()
