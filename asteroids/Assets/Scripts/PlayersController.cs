@@ -16,7 +16,7 @@ public class PlayersController
         {
             var shotConfig = player.ShotConfig;
             var playerShip = Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity);
-            var shotPool = Object.Instantiate(shotConfig.Pool);
+            var shotPool = Object.Instantiate(shotConfig.Pool, playerShip.transform);
 
             IMovement movement = new RigidbodyMovement(playerShip.Rigidbody, player.MoveSpeed, player.StartPosition);
             IRotator rotator = new RigidbodyRotator(playerShip.Rigidbody, player.RotateSpeed);

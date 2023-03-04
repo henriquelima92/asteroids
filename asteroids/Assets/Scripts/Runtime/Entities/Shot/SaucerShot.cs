@@ -12,7 +12,7 @@ public class SaucerShot : IShot
     {
         Anchor = anchor;
         ShotCadence = shotCadence;
-        CooldownTime = 0;
+        CooldownTime = shotCadence;
         ShotSpeed = shotSpeed;
         ShotPool = shotPool;
     }

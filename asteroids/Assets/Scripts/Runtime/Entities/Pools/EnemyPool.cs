@@ -51,6 +51,11 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     }
     public virtual void ResetPool()
     {
+        //foreach (var item in PooledItems)
+        //{
+        //    item.ResetEnemy();
+        //}
+
         Destroy(gameObject);
     }
 }

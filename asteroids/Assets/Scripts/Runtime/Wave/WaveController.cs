@@ -34,8 +34,13 @@ public class WaveController
 
 
     public void Reset()
-    {
+    {      
         _waveState.Reset();
+
+        StopFlowEnemies();
+        StopRandomAppearanceEnemies();
+
+        _enemyPools.Clear();
     }
 
     private void SetWaveConfigInPools(EnemyWaveConfig waveConfig)
@@ -59,6 +64,15 @@ public class WaveController
     private void StartFlowEnemies()
     {
         _enemyPools[_enemiesFlow[0]].StartEnemy();
+    }
+
+    private void StopFlowEnemies()
+    {
+        foreach (var (key, value) in _enemyPools)
+        {
+            value.StopEnemy();
+            value.ResetPool();
+        }
     }
 
     private void StartRandomAppearanceEnemies()

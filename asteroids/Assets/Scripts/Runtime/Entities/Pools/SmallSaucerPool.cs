@@ -23,11 +23,6 @@ public class SmallSaucerPool : EnemyPool
         StartCoroutine(_createEnemyCoroutine);
     }
 
-    public override void StopEnemy()
-    {
-        StopCoroutine(_createEnemyCoroutine);
-    }
-
     private IEnumerator CreateEnemies()
     {
         var time = 0f;
@@ -66,7 +61,7 @@ public class SmallSaucerPool : EnemyPool
         var saucer = GetFromPool() as Saucer;
         IMovement movement = new SaucerMovement(saucer.Rigidbody, speed, position, saucerConfig);
 
-        var enemyShotPool = Instantiate(saucerConfig.Pool);
+        var enemyShotPool = Instantiate(saucerConfig.Pool, saucer.transform);
         enemyShotPool.SetData(MapBoundaries, saucerConfig.ShotLifeSpan);
         IShot shooter = new SmallSaucerShot(saucer.transform, saucerConfig.ShotSpeed, saucerConfig.ShotCadence, enemyShotPool);
 
@@ -82,5 +77,13 @@ public class SmallSaucerPool : EnemyPool
         var timeRangeToAppear = _enemyConfig.TimeToAppear;
         _timeToAppear = Random.Range(timeRangeToAppear.Min, timeRangeToAppear.Max);
         Debug.Log($"Time to appear {_timeToAppear}");
+    }
+
+    public override void StopEnemy()
+    {
+        if(_createEnemyCoroutine != null)
+        {
+            StopCoroutine(_createEnemyCoroutine);
+        }        
     }
 }
