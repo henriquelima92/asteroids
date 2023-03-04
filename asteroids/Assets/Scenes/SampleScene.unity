@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1454901499}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1017913042
@@ -332,11 +332,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1454901499 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4330208295342114186, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
-  m_PrefabInstance: {fileID: 282888801577133364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1933663874 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7498871670789498667, guid: bd9d260b84f21e6409b44acaa0eb0c43, type: 3}
@@ -447,6 +442,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4086101659104123841, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: _eventSystem
+      value: 
+      objectReference: {fileID: 1017913041}
     - target: {fileID: 4086101659104123841, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
       propertyPath: _gameController
       value: 

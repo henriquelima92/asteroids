@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenuScreen : MonoBehaviour
 {
+    [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameController _gameController;
 
     [Space, Header("Buttons")]
@@ -31,6 +33,12 @@ public class MainMenuScreen : MonoBehaviour
 
         _quitButton.onClick.RemoveAllListeners();
         _quitButton.onClick.AddListener(OnQuitClick);
+    }
+
+    private void OnEnable()
+    {
+        _eventSystem.SetSelectedGameObject(null);
+        _singlePlayerButton.Select();
     }
 
     public void SetScreenCallbacks(UnityAction<List<PlayerShip>> onGameplayStart, UnityAction onHelButtonClick)
