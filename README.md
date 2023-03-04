@@ -1,5 +1,7 @@
 # Asteroids
 
+You can test the latest webgl version here: https://henriquelima92.github.io/asteroids/
+
 ## What was developed:
 
 The project was developed with Unity 2021.3.18f1  
