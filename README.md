@@ -24,7 +24,7 @@ Player Inputs (the selected inputs are reflecting in the help screen)
 ![image](https://user-images.githubusercontent.com/30634239/222927390-aa9199de-089e-4b21-bd17-71e0d21f607d.png)
 
 
-## What should be improvement or added  
+## What should be improved or added  
 
 Namespaces  
 Audio system  
