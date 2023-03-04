@@ -443,10 +443,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIController
       objectReference: {fileID: 0}
+    - target: {fileID: 1667450999091499298, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4086101659104123841, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
       propertyPath: _gameController
       value: 
       objectReference: {fileID: 1933663874}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136633477002628140, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370851996766246266, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8752813405883036832, guid: 44a82612797ce2347a671093dfc359aa, type: 3}
       propertyPath: _keyToPress
       value: 13
