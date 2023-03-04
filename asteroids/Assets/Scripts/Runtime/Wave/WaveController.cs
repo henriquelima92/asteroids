@@ -57,7 +57,7 @@ public class WaveController
 
         SetWaveConfigInPools(_waves[_waveState.CurrentWave]);
 
-        StartFlowEnemies();
+        //StartFlowEnemies();
         StartRandomAppearanceEnemies();
     }
 

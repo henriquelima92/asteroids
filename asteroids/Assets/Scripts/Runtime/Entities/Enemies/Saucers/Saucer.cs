@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Saucer : Enemy
 {
-    public List<PlayerShip> _players;
-
+    private List<PlayerShip> _players;
     private SaucerMovement _movement;
     private IShot _shooter;
 
@@ -51,8 +50,6 @@ public class Saucer : Enemy
         {
             return;
         }
-
-        //base.Update();
 
         _movement.UpdateMovement();
         _shooter.Update();

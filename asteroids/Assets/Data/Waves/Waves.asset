@@ -28,7 +28,7 @@ MonoBehaviour:
         Min: 2
         Max: 3
     RandomAppearanceEnemies:
-    - EnemyType: 3
+    - EnemyType: 4
       TimeToAppear:
         Min: 2
         Max: 3
