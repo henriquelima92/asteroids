@@ -35,7 +35,7 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
 
         void OnEnemyDestroyed(Enemy enemy)
         {
-            ExplosionPool.Explode(enemy.transform.position);
+            ExplosionPool.Explode(enemy.transform);
             ReturnToPool(enemy);
             OnDestroy?.Invoke(enemy);
         }

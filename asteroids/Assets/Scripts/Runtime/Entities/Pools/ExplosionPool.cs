@@ -13,12 +13,12 @@ public class ExplosionPool : GenericObjectPool<Explosion>
         }
     }
 
-    public void Explode(Vector3 position)
+    public void Explode(Transform objectTransform)
     {
         var explosion = GetFromPool();
         explosion.gameObject.SetActive(true);
 
-        explosion.StartExplosion(position);
+        explosion.StartExplosion(objectTransform.position);
     }
 
     public void ResetPool()
