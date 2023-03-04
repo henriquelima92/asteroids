@@ -20,4 +20,5 @@ public struct PlayerConfig
     public int MaxLives;
 
     public Vector2 StartPosition;
+    public Explosion ExplosionPrefab;
 }

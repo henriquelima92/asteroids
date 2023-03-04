@@ -19,11 +19,13 @@ public class PlayerShip : Entity
     private HyperSpace _hyperSpace;
     private UnityAction<PlayerShip> _onDestroy;
     private GameController _gameController;
+    private Explosion _explosion;
 
 
     public void Initialize(IMovement movement, IRotator rotator, IShot shooter, 
         ILife life, PlayerInputs inputs, MapBoundaries mapBoundaries, 
-        IRespawn respawn, IHighscore highscore, IScoreBonus scoreBonus, GameController gameController)
+        IRespawn respawn, IHighscore highscore, IScoreBonus scoreBonus, 
+        GameController gameController, Explosion explosion)
     {
         Set(mapBoundaries);
 
@@ -38,6 +40,8 @@ public class PlayerShip : Entity
 
         _hyperSpace = new HyperSpace(mapBoundaries, transform);
         _gameController = gameController;
+
+        _explosion = explosion;
     }
 
     public void ResetShip()
@@ -48,7 +52,7 @@ public class PlayerShip : Entity
         _life.Reset();
         _highscore.Reset();
 
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
 
@@ -107,6 +111,9 @@ public class PlayerShip : Entity
         {
             _life.RemoveLife();
             gameObject.SetActive(false);
+
+            _explosion.gameObject.SetActive(true);
+            _explosion.StartExplosion(transform.position);
 
             if(_life.IsAlive)
             {

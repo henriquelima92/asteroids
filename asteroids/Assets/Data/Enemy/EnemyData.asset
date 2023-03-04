@@ -21,6 +21,7 @@ MonoBehaviour:
       Max: 0.05
     Score: 100
     CustomConfigData: {fileID: 0}
+    ExplosionPool: {fileID: 4508822388333717820, guid: 49a5956724654a54aabbc8d1334a797f, type: 3}
   - EnemyType: 1
     Pool: {fileID: -3045068270849277627, guid: 667f2532197a66b40a0b1207b8b69365, type: 3}
     MoveSpeed:
@@ -28,6 +29,7 @@ MonoBehaviour:
       Max: 0.07
     Score: 200
     CustomConfigData: {fileID: 0}
+    ExplosionPool: {fileID: 4508822388333717820, guid: 844899f90448fc04ab96f687ef112ffa, type: 3}
   - EnemyType: 2
     Pool: {fileID: 5286696963593104709, guid: 87f93c4fc49f57843a714307018fee33, type: 3}
     MoveSpeed:
@@ -35,6 +37,7 @@ MonoBehaviour:
       Max: 0.09
     Score: 500
     CustomConfigData: {fileID: 0}
+    ExplosionPool: {fileID: 4508822388333717820, guid: dc0eb05df6b19d44593b6c669403d815, type: 3}
   - EnemyType: 3
     Pool: {fileID: 8660450914434901052, guid: eed435f75dc745441b77bfba2b887a42, type: 3}
     MoveSpeed:
@@ -42,6 +45,7 @@ MonoBehaviour:
       Max: 0.5
     Score: 1000
     CustomConfigData: {fileID: 11400000, guid: fc0e4774cc3dda840bd89672cbd09438, type: 2}
+    ExplosionPool: {fileID: 4508822388333717820, guid: ba40e353a05493e41a6c6529354e318a, type: 3}
   - EnemyType: 4
     Pool: {fileID: 2219551062217904471, guid: 0b9d2b4678d487f4a83df7d3fd2f6bc2, type: 3}
     MoveSpeed:
@@ -49,3 +53,4 @@ MonoBehaviour:
       Max: 0.5
     Score: 1500
     CustomConfigData: {fileID: 11400000, guid: ebd1a05d697ade645bf6a3912f284a6d, type: 2}
+    ExplosionPool: {fileID: 4508822388333717820, guid: 9ba89c5e094ca1a40a12d6dbc008ac45, type: 3}

@@ -13,9 +13,10 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     protected List<PlayerShip> Players;
     protected CustomConfigData CustomConfigData;
     protected UnityAction<Enemy> OnDestroy;
+    protected ExplosionPool ExplosionPool;
 
     public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score, List<PlayerShip> players,
-        CustomConfigData customConfigData)
+        CustomConfigData customConfigData, ExplosionPool explosionPool)
     {
         MapBoundaries = mapBoundaries;
         SpeedRange = speedRange;
@@ -23,6 +24,7 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
         Score = score;
         Players = players;
         CustomConfigData = customConfigData;
+        ExplosionPool = explosionPool;
 
         OnCreateNewPooledItem = OnCreatePoolItem;
     }
@@ -33,6 +35,7 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
 
         void OnEnemyDestroyed(Enemy enemy)
         {
+            ExplosionPool.Explode(enemy.transform.position);
             ReturnToPool(enemy);
             OnDestroy?.Invoke(enemy);
         }
@@ -55,7 +58,8 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     }
     public virtual void ResetPool()
     {
-        Destroy(gameObject);
+        ExplosionPool.ResetPool();
+        Destroy(transform.parent.gameObject);
     }
 
     public virtual void OnCreatePoolItem(Enemy enemy)

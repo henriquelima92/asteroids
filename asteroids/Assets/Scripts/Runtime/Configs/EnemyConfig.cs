@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
 
 [Serializable]
 public struct EnemyConfig
@@ -10,4 +8,5 @@ public struct EnemyConfig
     public FloatRange MoveSpeed;
     public int Score;
     public CustomConfigData CustomConfigData;
+    public ExplosionPool ExplosionPool;
 }

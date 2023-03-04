@@ -33,3 +33,4 @@ MonoBehaviour:
     Lives: 3
     MaxLives: 4
     StartPosition: {x: 0, y: 0}
+    ExplosionPrefab: {fileID: 6345269674355644581, guid: 0f91a314844aea542828b874633bf1c6, type: 3}

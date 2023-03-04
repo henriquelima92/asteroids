@@ -12,11 +12,14 @@ public class PlayersController
         var players = playerData.Players;
         var mapBoundaries = mapBoundariesData.MapBoundaries;
 
-        foreach (var player in players)
+        foreach(var player in players)
         {
+            var playerRoot = new GameObject(player.PlayerName).transform;
+
             var shotConfig = player.ShotConfig;
-            var playerShip = Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity);
-            var shotPool = Object.Instantiate(shotConfig.Pool, playerShip.transform);
+            var playerShip = Object.Instantiate(player.PlayerPrefab, player.StartPosition, Quaternion.identity, playerRoot);
+            var shotPool = Object.Instantiate(shotConfig.Pool, playerRoot);
+            var explosion = Object.Instantiate(player.ExplosionPrefab, playerRoot);
 
             IMovement movement = new RigidbodyMovement(playerShip.Rigidbody, player.MoveSpeed, player.StartPosition);
             IRotator rotator = new RigidbodyRotator(playerShip.Rigidbody, player.RotateSpeed);
@@ -26,8 +29,11 @@ public class PlayersController
             IHighscore highscore = new Highscore();
             IScoreBonus scoreBonus = new LifeScoreBonus(highscoreConfig.ScoreNewLifeThreshold, highscore, life);
 
+            explosion.SetData((explosion) => { explosion.gameObject.SetActive(false); });
+
             shotPool.SetData(mapBoundaries, shotConfig.ShotLifeSpan, highscore);
-            playerShip.Initialize(movement, rotator, shooter, life, player.Inputs, mapBoundaries, respawn, highscore, scoreBonus, gameController);
+            playerShip.Initialize(movement, rotator, shooter, life, player.Inputs, 
+                mapBoundaries, respawn, highscore, scoreBonus, gameController, explosion);
             _players.Add(playerShip);
         }
 

@@ -15,9 +15,14 @@ public class EnemiesController
         for (int i = 0; i < enemyConfigs.Count; i++)
         {
             var enemyData = enemyConfigs[i];
+            var enemyRoot = new GameObject(enemyData.EnemyType.ToString()).transform;
 
-            var pool = Object.Instantiate(enemyData.Pool);
-            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score, players, enemyData.CustomConfigData);
+            var pool = Object.Instantiate(enemyData.Pool, enemyRoot);
+            var explosionPool = Object.Instantiate(enemyData.ExplosionPool, enemyRoot);
+
+            explosionPool.Initialize();
+            pool.SetData(mapBoundaries, enemyData.MoveSpeed, enemyData.EnemyType, enemyData.Score,
+                players, enemyData.CustomConfigData, explosionPool);
             pools.Add(enemyData.EnemyType, pool);
         }
 

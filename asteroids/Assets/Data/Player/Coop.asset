@@ -33,6 +33,7 @@ MonoBehaviour:
     Lives: 3
     MaxLives: 10
     StartPosition: {x: 2, y: 0}
+    ExplosionPrefab: {fileID: 6345269674355644581, guid: 0f91a314844aea542828b874633bf1c6, type: 3}
   - PlayerName: Player1
     PlayerPrefab: {fileID: 8858472313837484299, guid: 9b6a46cfe65511742a337fad74cd070f, type: 3}
     ShotPrefab: {fileID: 1045435076452213151, guid: 8a490165e8f07bf4fb1004e720b95eaf, type: 3}
@@ -52,3 +53,4 @@ MonoBehaviour:
     Lives: 3
     MaxLives: 10
     StartPosition: {x: -2, y: 0}
+    ExplosionPrefab: {fileID: 6345269674355644581, guid: 0f91a314844aea542828b874633bf1c6, type: 3}
