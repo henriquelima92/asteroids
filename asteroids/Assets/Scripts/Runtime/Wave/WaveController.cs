@@ -18,7 +18,7 @@ public class WaveController
         _enemyPools = enemyPools;
         _gameController = gameController;
 
-        _waveState = new WaveState(waveStartDelay, waveData.Waves.Count - 1, waveData.EnemiesFlow.Count - 1);
+        _waveState = new WaveState(waveStartDelay, waveData.Waves.Count - 1, waveData.EnemiesFlow.Count - 1, waveData.StartFlowEnemies, waveData.StartRandomAppearanceEnemies);
 
         for (int i = 0; i < _enemiesFlow.Count; i++)
         {
@@ -57,8 +57,15 @@ public class WaveController
 
         SetWaveConfigInPools(_waves[_waveState.CurrentWave]);
 
-        //StartFlowEnemies();
-        StartRandomAppearanceEnemies();
+        if(_waveState.StartFlowEnemies)
+        {
+            StartFlowEnemies();
+        }
+        
+        if(_waveState.StartRandomAppearanceEnemies)
+        {
+            StartRandomAppearanceEnemies();
+        }
     }
 
     private void StartFlowEnemies()

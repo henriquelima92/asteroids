@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5b47f4ec950fd48b68344c40a28339, type: 3}
   m_Name: Waves
   m_EditorClassIdentifier: 
+  _startFlowEnemies: 1
+  _startRandomAppearanceEnemies: 1
   _enemiesFlow: 000000000100000002000000
   _waves:
   - Enemies:

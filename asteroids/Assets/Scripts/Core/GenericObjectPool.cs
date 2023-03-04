@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GenericObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GenericObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public Queue<T> PooledItems = new Queue<T>();
     public List<T> ItemsInUse = new List<T>();
+
+    public UnityAction<T> OnCreateNewPooledItem;
 
     protected virtual void Awake()
     {
@@ -41,6 +44,8 @@ public class GenericObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         T newPooledItem = Instantiate(_prefab, this.transform);
         ItemsInUse.Add(newPooledItem);
+        OnCreateNewPooledItem.Invoke(newPooledItem);
+
         return newPooledItem;
     }
 

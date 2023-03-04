@@ -12,6 +12,7 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     protected IWaveState WaveState;
     protected List<PlayerShip> Players;
     protected CustomConfigData CustomConfigData;
+    protected UnityAction<Enemy> OnDestroy;
 
     public void SetData(MapBoundaries mapBoundaries, FloatRange speedRange, EnemyType enemyType, int score, List<PlayerShip> players,
         CustomConfigData customConfigData)
@@ -22,15 +23,18 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
         Score = score;
         Players = players;
         CustomConfigData = customConfigData;
+
+        OnCreateNewPooledItem = OnCreatePoolItem;
     }
     public void Initialize(IWaveState waveState, UnityAction<Enemy> onDestroy = null)
     {
         WaveState = waveState;
+        OnDestroy = onDestroy;
 
-        void OnEnemyDestroyed(Enemy asteroid)
+        void OnEnemyDestroyed(Enemy enemy)
         {
-            ReturnToPool(asteroid);
-            onDestroy?.Invoke(asteroid);
+            ReturnToPool(enemy);
+            OnDestroy?.Invoke(enemy);
         }
 
         foreach (var item in PooledItems)
@@ -51,11 +55,18 @@ public abstract class EnemyPool : GenericObjectPool<Enemy>
     }
     public virtual void ResetPool()
     {
-        //foreach (var item in PooledItems)
-        //{
-        //    item.ResetEnemy();
-        //}
-
         Destroy(gameObject);
+    }
+
+    public virtual void OnCreatePoolItem(Enemy enemy)
+    {
+        void OnEnemyDestroyed(Enemy enemy)
+        {
+            ReturnToPool(enemy);
+            OnDestroy?.Invoke(enemy);
+        }
+
+        enemy.Set(MapBoundaries);
+        enemy.Initialize(Score, OnEnemyDestroyed);
     }
 }
