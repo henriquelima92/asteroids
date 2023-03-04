@@ -17,3 +17,5 @@ MonoBehaviour:
     Size: {x: 18, y: 10}
     SafeAreaCenter: {x: 0, y: 0}
     SafeAreaSize: {x: 3, y: 3}
+    SafeAreaRadius: 3
+    MapAreaRadius: 10

@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapBoundariesData: {fileID: 11400000, guid: 66362d59981b49a4c9de5b1da383f487, type: 2}
-  _drawGizmos: 0
+  _drawGizmos: 1
 --- !u!4 &1119065536
 Transform:
   m_ObjectHideFlags: 0

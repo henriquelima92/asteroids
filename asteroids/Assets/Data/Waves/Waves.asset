@@ -19,8 +19,8 @@ MonoBehaviour:
   - Enemies:
     - EnemyType: 0
       Range:
-        Min: 1
-        Max: 2
+        Min: 5
+        Max: 15
     - EnemyType: 1
       Range:
         Min: 1

@@ -4,7 +4,7 @@ public static class RandomUtility
 {
     public static Vector2 GetRandomDirection()
     {
-        return new Vector2(Random.Range(0, 360), Random.Range(0, 360));
+        return new Vector2(Random.Range(-180, 180),Random.Range(-180, 180));
     }
 
     public static Vector2 GetRandomPositionAroundPoint(Vector2 point, float radius)
@@ -13,15 +13,24 @@ public static class RandomUtility
         return point + randomPosition;
     }
 
+    public static Vector2 GetRandomDirectionInsideBox(MapBoundaries mapBoundaries)
+    {
+        var x = CanDo(50) ? -1 : 1;
+        var y = CanDo(50) ? -1 : 1;
+
+        var randomX = (Random.value - 0.5f) * (mapBoundaries.Size.x * x);
+        var randomY = (Random.value - 0.5f) * (mapBoundaries.Size.y * y);
+
+        return new Vector2(randomX, randomY);
+    }
+
     public static Vector2 RandomPointInBox(MapBoundaries mapBoundaries)
     {
         Vector2 pos;
         do
         {
-            var randomX = (Random.value - 0.5f) * mapBoundaries.Size.x;
-            var randomY = (Random.value - 0.5f) * mapBoundaries.Size.y;
-
-            pos = mapBoundaries.Center + new Vector2(randomX, randomY);
+            var randomPosInsideBox = GetRandomDirectionInsideBox(mapBoundaries);
+            pos = mapBoundaries.Center + randomPosInsideBox;
         }
         while (IsInsideSafeArea(pos, mapBoundaries.Size, mapBoundaries.SafeAreaCenter, mapBoundaries.SafeAreaSize));
 

@@ -10,7 +10,7 @@ public class BigAsteroidPool : EnemyPool
         for (int i = 0; i < itemsAmount; i++)
         {
             var position = RandomUtility.RandomPointInBox(MapBoundaries);
-            var direction = RandomUtility.GetRandomDirection();
+            var direction = RandomUtility.GetRandomDirectionInsideBox(MapBoundaries);
             var speed = Random.Range(SpeedRange.Min, SpeedRange.Max);
 
             var asteroid = GetFromPool();
@@ -18,7 +18,7 @@ public class BigAsteroidPool : EnemyPool
             asteroid.gameObject.SetActive(true);
 
             movement.SetMovingState(MovingState.Thrusting);
-            movement.Move(direction);
+            movement.Move(direction, ForceMode2D.Impulse);
         }
 
         WaveState.EnemiesCount += itemsAmount;
