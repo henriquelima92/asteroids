@@ -47,15 +47,21 @@ public class Saucer : Enemy
 
     protected override void Update()
     {
-        base.Update();
-
         if (_movement.MovingState != MovingState.Thrusting)
         {
             return;
         }
 
+        //base.Update();
+
         _movement.UpdateMovement();
         _shooter.Update();
+
+        if(!Wraparound.IsSaucerInsideBoundaries())
+        {
+            ResetEnemy();
+            OnDestroy.Invoke(this);
+        }
     }
 
     public void InitializeSaucer(List<PlayerShip> players, IMovement movement, IShot shooter)

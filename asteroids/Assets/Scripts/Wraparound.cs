@@ -38,4 +38,24 @@ public class Wraparound
             _target.position = new Vector2(_target.position.x, _mapBoundaries.Top);
         }
     }
+
+    public bool IsSaucerInsideBoundaries()
+    {
+        if (_target.position.y > _mapBoundaries.Top)
+        {
+            _target.position = new Vector2(_target.position.x, _mapBoundaries.Bottom);
+        }
+
+        if (_target.position.y < _mapBoundaries.Bottom)
+        {
+            _target.position = new Vector2(_target.position.x, _mapBoundaries.Top);
+        }
+
+        if (_target.position.x < _mapBoundaries.Left || _target.position.x > _mapBoundaries.Right)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

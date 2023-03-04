@@ -42,10 +42,3 @@ MonoBehaviour:
       Max: 0.5
     Score: 1000
     CustomConfigData: {fileID: 11400000, guid: fc0e4774cc3dda840bd89672cbd09438, type: 2}
-  - EnemyType: 4
-    Pool: {fileID: 8660450914434901052, guid: eed435f75dc745441b77bfba2b887a42, type: 3}
-    MoveSpeed:
-      Min: 0
-      Max: 0.5
-    Score: 1000
-    CustomConfigData: {fileID: 11400000, guid: fc0e4774cc3dda840bd89672cbd09438, type: 2}
