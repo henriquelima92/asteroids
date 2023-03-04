@@ -2,6 +2,9 @@
 
 ## What was developed:
 
+The project was developed with Unity 2021.3.18f1  
+  
+
 Single player and coop modes.  
 Three types of asteroids and two flying saucers with different attributes (Big, Medium, Small) (Big = Smart, Small = dumb)  
 Movement of all entities were made with rigidbody.  
